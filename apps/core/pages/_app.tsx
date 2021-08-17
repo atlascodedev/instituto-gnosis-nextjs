@@ -1,25 +1,22 @@
+import * as React from 'react';
 import { AppProps } from 'next/app';
-import Head from 'next/head';
-import './styles.css';
+import {
+  AtlasCodeThemeProvider,
+  ThemeSmoothScrollLayout,
+} from '@atlascode/core';
+import theme from '../theme/customTheme';
+import AppLayout from '../layout/LandingPage.layout';
 
-function CustomApp({ Component, pageProps }: AppProps) {
+export default function MyApp(props: AppProps) {
+  const { Component, pageProps } = props;
+
   return (
-    <>
-      <Head>
-        <title>Welcome to core!</title>
-      </Head>
-      <div className="app">
-        <header className="flex">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/nx-logo-white.svg" alt="Nx logo" width="75" height="50" />
-          <h1>Welcome to core!</h1>
-        </header>
-        <main>
+    <AtlasCodeThemeProvider theme={theme}>
+      <ThemeSmoothScrollLayout>
+        <AppLayout>
           <Component {...pageProps} />
-        </main>
-      </div>
-    </>
+        </AppLayout>
+      </ThemeSmoothScrollLayout>
+    </AtlasCodeThemeProvider>
   );
 }
-
-export default CustomApp;

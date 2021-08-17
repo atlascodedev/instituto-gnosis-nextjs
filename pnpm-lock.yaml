@@ -2,6 +2,9 @@ lockfileVersion: 5.3
 
 specifiers:
   '@atlascode/core': ^1.0.0-alpha.2
+  '@material-ui/core': ^5.0.0-beta.4
+  '@material-ui/icons': ^5.0.0-beta.4
+  '@material-ui/system': ^5.0.0-beta.4
   '@nrwl/cli': 12.7.2
   '@nrwl/cypress': 12.7.2
   '@nrwl/eslint-plugin-nx': 12.7.2
@@ -36,6 +39,7 @@ specifiers:
   prettier: ^2.3.1
   react: 17.0.2
   react-dom: 17.0.2
+  react-icons: ^4.2.0
   regenerator-runtime: 0.13.7
   ts-jest: 27.0.3
   ts-node: ~9.1.1
@@ -44,11 +48,15 @@ specifiers:
 
 dependencies:
   '@atlascode/core': 1.0.0-alpha.2_d4ea51ed1b6b0c4839c63296e877f44f
+  '@material-ui/core': 5.0.0-beta.4_ba191c0052acfa37659f3ba04a2d9405
+  '@material-ui/icons': 5.0.0-beta.4_4f10af60554b3e9cd4072a18db60430c
+  '@material-ui/system': 5.0.0-beta.4_@types+react@17.0.3+react@17.0.2
   '@nrwl/next': 12.7.2_e62b74b6d434bd04a6f5ed23c981f535
   core-js: 3.16.2
   next: 11.1.0_f31b35bdaa3b7c2fce82404f09d2dac4
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
+  react-icons: 4.2.0_react@17.0.2
   regenerator-runtime: 0.13.7
   tslib: 2.3.1
 
@@ -1853,6 +1861,41 @@ packages:
       react-transition-group: 4.4.2_react-dom@17.0.2+react@17.0.2
     dev: false
 
+  /@material-ui/core/5.0.0-beta.4_ba191c0052acfa37659f3ba04a2d9405:
+    resolution: {integrity: sha512-9xQUtQc+EaNx7MSCWAK7tN46EMFegCHdbuXdPXOFeOf0RpNvBG3sbMgs8vTwesPUA0PfFIk3Xobr2SBImoqeSA==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@emotion/react': ^11.0.0
+      '@emotion/styled': ^11.0.0
+      '@types/react': ^16.8.6 || ^17.0.0
+      react: ^17.0.0
+      react-dom: ^17.0.0
+    peerDependenciesMeta:
+      '@emotion/react':
+        optional: true
+      '@emotion/styled':
+        optional: true
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.15.3
+      '@material-ui/system': 5.0.0-beta.4_@types+react@17.0.3+react@17.0.2
+      '@material-ui/types': 6.0.2_@types+react@17.0.3
+      '@material-ui/unstyled': 5.0.0-alpha.43_ba191c0052acfa37659f3ba04a2d9405
+      '@material-ui/utils': 5.0.0-beta.4_react@17.0.2
+      '@popperjs/core': 2.9.3
+      '@types/react': 17.0.3
+      '@types/react-transition-group': 4.4.2
+      clsx: 1.1.1
+      csstype: 3.0.8
+      hoist-non-react-statics: 3.3.2
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-is: 17.0.2
+      react-transition-group: 4.4.2_react-dom@17.0.2+react@17.0.2
+    dev: false
+
   /@material-ui/icons/5.0.0-beta.4_4f10af60554b3e9cd4072a18db60430c:
     resolution: {integrity: sha512-ZUDWn/vlHQPYWmvid7dz1E1Kiqz8rwDcsI46d9Ft9iphIvWJhESzLGIEQlu3TUN0dY1BRPVCxgQzLg1mfatA5w==}
     engines: {node: '>=12.0.0'}
@@ -1865,7 +1908,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.15.3
-      '@material-ui/core': 5.0.0-beta.4_8644f7ada7f9fb0b1682341a0a5c48d0
+      '@material-ui/core': 5.0.0-beta.4_ba191c0052acfa37659f3ba04a2d9405
       '@types/react': 17.0.3
       react: 17.0.2
     dev: false
@@ -1903,6 +1946,53 @@ packages:
       '@babel/runtime': 7.15.3
       '@emotion/cache': 11.4.0
       '@emotion/react': 11.1.5_@types+react@17.0.3+react@17.0.2
+      prop-types: 15.7.2
+      react: 17.0.2
+    dev: false
+
+  /@material-ui/styled-engine/5.0.0-beta.4_react@17.0.2:
+    resolution: {integrity: sha512-Cw+9aD9ZzskhOYo370kWy1JODq6BgCfw2hj/THWK0Tqo+lP2LrjeZvKzKt7AUbPQh/glAi+I/vVtlKnl+OMI1w==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@emotion/react': ^11.0.0
+      '@emotion/styled': ^11.0.0
+      react: ^17.0.0
+    peerDependenciesMeta:
+      '@emotion/react':
+        optional: true
+      '@emotion/styled':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.15.3
+      '@emotion/cache': 11.4.0
+      prop-types: 15.7.2
+      react: 17.0.2
+    dev: false
+
+  /@material-ui/system/5.0.0-beta.4_@types+react@17.0.3+react@17.0.2:
+    resolution: {integrity: sha512-jiUBCcRkDSmkhFEKWVEEvBXxjbFC/zYSRdFW78KcOV1JYbcQmlOx2YXtH9tVuVqqRKvgvSK0hVCqADAuFH5Bhg==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@emotion/react': ^11.0.0
+      '@emotion/styled': ^11.0.0
+      '@types/react': ^16.8.6 || ^17.0.0
+      react: ^17.0.0
+    peerDependenciesMeta:
+      '@emotion/react':
+        optional: true
+      '@emotion/styled':
+        optional: true
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.15.3
+      '@material-ui/private-theming': 5.0.0-beta.4_@types+react@17.0.3+react@17.0.2
+      '@material-ui/styled-engine': 5.0.0-beta.4_react@17.0.2
+      '@material-ui/types': 6.0.2_@types+react@17.0.3
+      '@material-ui/utils': 5.0.0-beta.4_react@17.0.2
+      '@types/react': 17.0.3
+      clsx: 1.1.1
+      csstype: 3.0.8
       prop-types: 15.7.2
       react: 17.0.2
     dev: false

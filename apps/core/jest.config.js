@@ -1,10 +1,10 @@
 module.exports = {
-  displayName: 'core',
-  preset: '../../jest.preset.js',
+  displayName: 'gnosis-core',
+  preset: '../../../jest.preset.js',
   transform: {
     '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nrwl/react/plugins/jest',
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/apps/core',
+  coverageDirectory: '../../../coverage/apps/gnosis/core',
 };
