@@ -2,7 +2,6 @@ import { useScrollbarContext } from '@atlascode/core';
 import axios, { AxiosResponse } from 'axios';
 import { GetStaticProps } from 'next';
 import BlogPreview from '../components/BlogPreview';
-import Contact from '../components/Contact';
 import Courses from '../components/Courses';
 import HeroScreen from '../components/HeroScreen';
 import GnosisLoader from '../components/Loader';
@@ -26,9 +25,15 @@ const mockBlogPreview = [];
 
 export interface IndexPageProps {
   courses: CourseCollectionType[];
+  blog?: BlogCollectionType[];
+  testimonials?: TestimonialCollectionType[];
 }
 
-export function Index({ courses }: IndexPageProps) {
+export function Index({
+  courses,
+  blog = [],
+  testimonials = [],
+}: IndexPageProps) {
   const { disableScroll, enableScroll, scrollIntoView } = useScrollbarContext();
 
   const coursesWithSlugMemo = React.useMemo(
@@ -68,22 +73,17 @@ export function Index({ courses }: IndexPageProps) {
       </div>
       <Newsletter />
 
-      <div>
-        <BlogPreview items={mockBlogPreview} />
-      </div>
+      {blog.length > 0 && (
+        <div>
+          <BlogPreview items={mockBlogPreview} />
+        </div>
+      )}
 
-      <div>
-        <Testimonials items={mockTestimonials} />
-      </div>
-
-      <div id="contact_form">
-        <Contact
-          formProps={{
-            title: 'Fale conosco',
-          }}
-          blobColor="secondary"
-        />
-      </div>
+      {testimonials.length > 0 && (
+        <div>
+          <Testimonials items={mockTestimonials} />
+        </div>
+      )}
     </div>
   );
 }

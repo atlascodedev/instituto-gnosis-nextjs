@@ -4,6 +4,7 @@ import React from 'react';
 import OfferSlider, {
   OfferSliderProps,
 } from '../Sliders/offer-slider/OfferSlider';
+import { motion } from 'framer-motion';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CoursesProps {
@@ -69,15 +70,126 @@ const Courses = ({ coursesExt, coursesMulti, coursesPos }: CoursesProps) => {
         }}
       >
         <TabPanel index={0} value={activeTab}>
-          <OfferSlider items={coursesPos} />
+          {coursesPos.length > 0 ? (
+            <OfferSlider items={coursesPos} />
+          ) : (
+            <Box
+              sx={{
+                display: 'flex',
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+                py: '5rem',
+              }}
+            >
+              <motion.div
+                animate="visible"
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                  },
+                  visible: {
+                    opacity: 1,
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    fontSize: { xs: '20px', lg: '32px' },
+                    fontWeight: 700,
+                    color: (theme) => theme.palette.primary.main,
+                    maxWidth: '50ch',
+                    textAlign: 'center',
+                  }}
+                >
+                  Nenhum curso de pós-graduação encontrado. Inscreva-se na nossa
+                  newsletter e receba notícias sobre lançamentos de cursos.
+                </Box>
+              </motion.div>
+            </Box>
+          )}
         </TabPanel>
 
         <TabPanel index={1} value={activeTab}>
-          <OfferSlider items={coursesExt} />
+          {coursesExt.length > 0 ? (
+            <OfferSlider items={coursesExt} />
+          ) : (
+            <Box
+              sx={{
+                display: 'flex',
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+                py: '5rem',
+              }}
+            >
+              <motion.div
+                animate="visible"
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                  },
+                  visible: {
+                    opacity: 1,
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    maxWidth: '50ch',
+                    textAlign: 'center',
+                    fontSize: { xs: '20px', lg: '32px' },
+                    fontWeight: 700,
+                    color: (theme) => theme.palette.primary.main,
+                  }}
+                >
+                  Nenhum curso de extensão encontrado. Inscreva-se na nossa
+                  newsletter e receba notícias sobre lançamentos de cursos.
+                </Box>
+              </motion.div>
+            </Box>
+          )}
         </TabPanel>
 
         <TabPanel index={2} value={activeTab}>
-          <OfferSlider items={coursesMulti} />
+          {coursesMulti.length > 0 ? (
+            <OfferSlider items={coursesMulti} />
+          ) : (
+            <Box
+              sx={{
+                display: 'flex',
+                width: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+                py: '5rem',
+              }}
+            >
+              <motion.div
+                animate="visible"
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                  },
+                  visible: {
+                    opacity: 1,
+                  },
+                }}
+              >
+                <Box
+                  sx={{
+                    maxWidth: '50ch',
+                    textAlign: 'center',
+                    fontSize: { xs: '20px', lg: '32px' },
+                    fontWeight: 700,
+                    color: (theme) => theme.palette.primary.main,
+                  }}
+                >
+                  Nenhum curso multidisciplinar encontrado. Inscreva-se na nossa
+                  newsletter e receba notícias sobre lançamentos de cursos.
+                </Box>
+              </motion.div>
+            </Box>
+          )}
         </TabPanel>
       </Box>
     </Box>
