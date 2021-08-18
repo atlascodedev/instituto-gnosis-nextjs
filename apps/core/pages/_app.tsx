@@ -8,6 +8,7 @@ import {
 import theme from '../theme/customTheme';
 import AppLayout from '../layout/LandingPage.layout';
 import create from 'zustand';
+import '@atlascode/core/core.esm.css';
 
 interface ContactDialogState {
   open: boolean;
