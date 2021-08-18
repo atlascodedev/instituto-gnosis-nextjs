@@ -10,9 +10,7 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: true,
   },
-  future: {
-    webpack5: true,
-  },
+ 
 };
 
 module.exports = withNx(nextConfig);

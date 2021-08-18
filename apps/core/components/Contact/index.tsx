@@ -17,7 +17,7 @@ const Contact = (props: ContactProps) => {
         width: '100%',
         height: '100%',
         position: 'relative',
-        px: { xs: '1rem', lg: '4rem' },
+        px: { xs: '0rem', lg: '4rem' },
       }}
     >
       <Box

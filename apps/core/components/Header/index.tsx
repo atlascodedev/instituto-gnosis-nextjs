@@ -2,22 +2,19 @@ import { Box, useTheme } from '@material-ui/core';
 import _ from 'lodash';
 import { useRouter } from 'next/dist/client/router';
 import {
-  ContactFormDialog,
   isBrowser,
   KotaMenu,
   ModernCleanMenu,
   useScrollbarContext,
 } from '@atlascode/core';
 import React from 'react';
+import { contactDialogStore } from 'apps/core/pages/_app';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface HeaderProps {}
 
 const Header = (props: HeaderProps) => {
-  const [contactFormDialogState, setContactFormDialogState] =
-    React.useState<boolean>(false);
   const { scrollIntoView, scrollTop } = useScrollbarContext();
-
   const { asPath, push } = useRouter();
 
   const handleScrollIntoView = (callback: (...args: unknown[]) => void) => {
@@ -65,16 +62,10 @@ const Header = (props: HeaderProps) => {
     }
   }, [scrollbarInstance]);
 
+  const contactStore = contactDialogStore((state) => state.openDialog);
+
   return (
     <React.Fragment>
-      <ContactFormDialog
-        cancelLabel="Cancelar"
-        submitLabel="Enviar"
-        title="Contato"
-        subtitle="Preencha o formulário com seus dados e uma mensagem e um de nossos representantes irá atendê-lo na primeira oportunidade."
-        handleClose={() => setContactFormDialogState(false)}
-        open={contactFormDialogState}
-      />
       <Box
         ref={mobileHeaderRef}
         sx={{
@@ -121,7 +112,7 @@ const Header = (props: HeaderProps) => {
           ButtonProps={{
             children: 'Contate-nos',
             variant: 'kota',
-            onClick: () => setContactFormDialogState(true),
+            onClick: contactStore,
           }}
           logo={'/images/gnosis-logo-blue.svg'}
           items={items.map((value, index) => {

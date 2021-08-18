@@ -16,3 +16,6 @@ export interface CourseCollectionType {
   uuid: string;
   courseSyllabus: string[];
 }
+export interface BlogCollectionType {}
+
+export interface TestimonialCollectionType {}
