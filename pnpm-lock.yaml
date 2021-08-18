@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@atlascode/core': ^1.1.5-alpha-2
+  '@atlascode/core': ^1.1.6-alpha-2
   '@emotion/react': ^11.4.1
   '@emotion/styled': ^11.3.0
   '@material-ui/core': ^5.0.0-beta.4
@@ -63,7 +63,7 @@ specifiers:
   zustand: ^3.5.9
 
 dependencies:
-  '@atlascode/core': 1.1.5-alpha-2_055c1df32b9117fb2186cfffda051880
+  '@atlascode/core': 1.1.6-alpha-2_055c1df32b9117fb2186cfffda051880
   '@emotion/react': 11.4.1_@types+react@17.0.3+react@17.0.2
   '@emotion/styled': 11.3.0_b9c18b17e2779319e51a53714f72db44
   '@material-ui/core': 5.0.0-beta.4_2aabb0f0d3af50c9d76745c4f83f7bff
@@ -128,8 +128,8 @@ devDependencies:
 
 packages:
 
-  /@atlascode/core/1.1.5-alpha-2_055c1df32b9117fb2186cfffda051880:
-    resolution: {integrity: sha512-jnoNPg/LVL6EmzcL3oYwMw8zrm4n1JHX4m3VNqVPEKfzadPbsuT2qK3NwbdndiYwOKh66zQ61m5W6NS332Qtmw==}
+  /@atlascode/core/1.1.6-alpha-2_055c1df32b9117fb2186cfffda051880:
+    resolution: {integrity: sha512-SVwjQJaNiDxSzLKx4KmWNAzWHZ8rtdjX6KKCI6aJvPV2B2uKlBYiDeRccEjD5F5yjP/UU83EPE/F8O/YKV/RkA==}
     peerDependencies:
       '@emotion/cache': ^11.4.0
       '@emotion/react': 11.1.5

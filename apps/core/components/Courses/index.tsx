@@ -1,11 +1,9 @@
-import {
-  OfferSlider,
-  OfferSliderProps,
-  polkaPattern,
-  TabPanel,
-} from '@atlascode/core';
+import { polkaPattern, TabPanel } from '@atlascode/core';
 import { Box, Tab, Tabs } from '@material-ui/core';
 import React from 'react';
+import OfferSlider, {
+  OfferSliderProps,
+} from '../Sliders/offer-slider/OfferSlider';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CoursesProps {

@@ -1,6 +1,8 @@
-import { TestimonialSlider, TestimonialSliderProps } from '@atlascode/core';
 import { Box } from '@material-ui/core';
 import React from 'react';
+import TestimonialSlider, {
+  TestimonialSliderProps,
+} from '../Sliders/testimonial-slider/TestimonialSlider';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface TestimonialsProps extends TestimonialSliderProps {}
