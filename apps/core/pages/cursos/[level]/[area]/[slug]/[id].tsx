@@ -29,15 +29,15 @@ export interface CoursePageProps
     Omit<CoursePageTabsProps, 'activeTab' | 'setActiveTab'> {}
 
 const CoursePage = ({
-  classes,
-  courseArea,
-  courseDuration,
-  courseEmec,
-  courseImage,
-  courseLevel,
-  courseName,
-  coursePrerequisites,
-  courseDescription,
+  classes = [],
+  courseArea = '',
+  courseDuration = '',
+  courseEmec = { imageURL: '', link: '' },
+  courseImage = { url: '', alt: '' },
+  courseLevel = '',
+  courseName = '',
+  coursePrerequisites = '',
+  courseDescription = '',
 }: CoursePageProps) => {
   const [activeTab, setActiveTab] = React.useState<number>(0);
 
@@ -100,7 +100,6 @@ const CoursePage = ({
         <ProductDefense />
       </Box>
       <NewsLetter />
-      <Contact />
     </Box>
   );
 };
