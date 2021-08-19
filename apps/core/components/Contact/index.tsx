@@ -1,11 +1,11 @@
 import {
   generateCSSFilter,
-  MinimalContactForm,
   MinimalContactFormProps,
   polkaPattern,
 } from '@atlascode/core';
 import { Box, useTheme, useMediaQuery } from '@material-ui/core';
 import React from 'react';
+import MinimalContactForm from '../minimal-contact-form/MinimalContactForm';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ContactProps extends MinimalFormPicOverBlobProps {}

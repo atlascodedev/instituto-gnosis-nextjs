@@ -111,7 +111,7 @@ const Header = (props: HeaderProps) => {
           onLogoClick={handleLogoClick}
           ButtonProps={{
             children: 'Contate-nos',
-            variant: 'kota',
+            variant: 'outlined',
             onClick: contactStore,
           }}
           logo={'/images/gnosis-logo-blue.svg'}

@@ -53,6 +53,7 @@ specifiers:
   react-dom: 17.0.2
   react-icons: ^4.2.0
   react-intersection-observer: ^8.32.0
+  react-number-format: ^4.7.3
   react-use: ^17.2.4
   regenerator-runtime: 0.13.7
   smooth-scrollbar: ^8.6.3
@@ -88,6 +89,7 @@ dependencies:
   react-dom: 17.0.2_react@17.0.2
   react-icons: 4.2.0_react@17.0.2
   react-intersection-observer: 8.32.0_react@17.0.2
+  react-number-format: 4.7.3_react-dom@17.0.2+react@17.0.2
   react-use: 17.2.4_react-dom@17.0.2+react@17.0.2
   regenerator-runtime: 0.13.7
   smooth-scrollbar: 8.6.3
@@ -10165,6 +10167,17 @@ packages:
 
   /react-is/17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
+
+  /react-number-format/4.7.3_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-4EvcANjstypQ5anhanmdEioGc49qbnErfS+yqbhatC0vzQ1okplkWNb0DIY7ABu4RhaxzttEz6pypEy8KsqgBQ==}
+    peerDependencies:
+      react: ^0.14 || ^15.0.0-0 || ^16.0.0-0 || ^17.0.0-0
+      react-dom: ^0.14 || ^15.0.0-0 || ^16.0.0-0 || ^17.0.0-0
+    dependencies:
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
 
   /react-refresh/0.8.3:
     resolution: {integrity: sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==}
