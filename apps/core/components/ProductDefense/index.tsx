@@ -23,7 +23,7 @@ const ProductDefense = (props: ProductDefenseProps) => {
       bgColor={'#F6F9FB'}
       sx={{ py: '10rem' }}
       itemList={itemList}
-      observerProps={{ triggerOnce: false, threshold: 0.4 }}
+      observerProps={{ triggerOnce: true, threshold: 0.4 }}
       animateIn
     />
   );

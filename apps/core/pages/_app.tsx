@@ -11,6 +11,7 @@ import '@atlascode/core/core.esm.css';
 import useContactForm from '../hooks/useContactForm';
 import ContactFormDialog from '../components/contact-form-dialog/ContactFormDialog';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 interface ContactDialogState {
   open: boolean;
@@ -62,6 +63,25 @@ export default function MyApp(props: AppProps) {
     <AtlasCodeThemeProvider theme={theme}>
       <ThemeSmoothScrollLayout>
         <AppLayout>
+          <Head>
+            <title>
+              Instituto Educacional Gnosis - Cursos de pós-graduação na área de
+              medicina.
+            </title>
+
+            <meta
+              property="og:title"
+              content="Instituto Educacional Gnosis - Cursos de pós-graduação na área da medicina."
+            />
+            <meta
+              property="og:description"
+              content="O Instituto Educacional Gnosis trabalha para trazer ao mercado cursos de pós-graduação, extensão e multidisciplinares capazes de impulsionar a sua carreira. Mantendo a excelência de uma instituição tradicional e trazendo ao mesmo tempo a modernidade do aprendizado à distância. Conheça nossos cursos de pós-graduação e extensão na área da medicina."
+            />
+            <meta
+              name="description"
+              content='content="O Instituto Educacional Gnosis trabalha para trazer ao mercado cursos de pós-graduação, extensão e multidisciplinares capazes de impulsionar a sua carreira. Mantendo a excelência de uma instituição tradicional e trazendo ao mesmo tempo a modernidade do aprendizado à distância. Conheça nossos cursos de pós-graduação e extensão na área da medicina."'
+            />
+          </Head>
           <Component {...pageProps} />
         </AppLayout>
       </ThemeSmoothScrollLayout>
