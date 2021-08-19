@@ -12,14 +12,13 @@ RUN curl -f https://get.pnpm.io/v6.7.js | node - add --global pnpm@6 && pnpm con
 
 ADD package.json /tmp/package.json
 RUN cd /tmp && pnpm install
-RUN mkdir -p /opt/app && cp -a /tmp/node_modules /opt/app/
+RUN mkdir app && cp -a /tmp/node_modules /app
 
 
 
 # --- Build node --- #
-RUN pnpx run nx core:build
-WORKDIR /opt/app
-COPY . /opt/app/
+COPY . /app
+RUN cd /app && pnpx nx run core:build
 
 
 
@@ -27,7 +26,7 @@ COPY . /opt/app/
 # --- Server connection node --- #
 ENV PORT=8080
 EXPOSE 8080
-WORKDIR /opt/app/dist/apps/core
+WORKDIR /app/dist/apps/core
 
 CMD ["npm", "start", "--", "--port", "8080"]
 
