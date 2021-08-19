@@ -31,6 +31,8 @@ export const useContactForm = (
       ),
     }),
   });
+
+  return formik;
 };
 
 export default useContactForm;

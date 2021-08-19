@@ -23,6 +23,7 @@ export interface ContactFormDialogProps {
   emailInputProps?: Partial<FormInputProps>;
   messageInputProps?: Partial<FormInputProps>;
   DialogProps?: DialogProps;
+  isSubmiting?: boolean;
 }
 
 export function ContactFormDialog({
@@ -50,6 +51,7 @@ export function ContactFormDialog({
     placeholder: 'Ex: (00) 0-0000-0000',
   },
   DialogProps,
+  isSubmiting,
 }: ContactFormDialogProps) {
   return (
     <Dialog
@@ -110,8 +112,12 @@ export function ContactFormDialog({
         </Box>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>{cancelLabel}</Button>
-        <Button onClick={onSubmit}>{submitLabel}</Button>
+        <Button disabled={isSubmiting} onClick={handleClose}>
+          {cancelLabel}
+        </Button>
+        <Button disabled={isSubmiting} onClick={onSubmit}>
+          {submitLabel}
+        </Button>
       </DialogActions>
     </Dialog>
   );

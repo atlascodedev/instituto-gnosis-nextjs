@@ -1,4 +1,10 @@
-import { Box, Button, TextField, ButtonProps, BoxProps } from '@material-ui/core';
+import {
+  Box,
+  Button,
+  TextField,
+  ButtonProps,
+  BoxProps,
+} from '@material-ui/core';
 
 export type FormInputProps = {
   label: string;
@@ -6,6 +12,9 @@ export type FormInputProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   helperText: string;
   error: boolean;
+  name?: string;
+  id?: string;
+  value?: any;
 };
 
 /* eslint-disable-next-line */

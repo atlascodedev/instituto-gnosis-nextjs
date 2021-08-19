@@ -2,18 +2,33 @@ import * as React from 'react';
 import { AppProps } from 'next/app';
 import {
   AtlasCodeThemeProvider,
-  ContactFormDialog,
   ThemeSmoothScrollLayout,
 } from '@atlascode/core';
 import theme from '../theme/customTheme';
 import AppLayout from '../layout/LandingPage.layout';
 import create from 'zustand';
 import '@atlascode/core/core.esm.css';
+import useContactForm from '../hooks/useContactForm';
+import ContactFormDialog from '../components/contact-form-dialog/ContactFormDialog';
+import { useRouter } from 'next/router';
 
 interface ContactDialogState {
   open: boolean;
   closeDialog: () => void;
   openDialog: () => void;
+}
+
+function nameof<T>(
+  obj: T,
+  expression: (x: { [Property in keyof T]: () => string }) => () => string
+): string {
+  const res: { [Property in keyof T]: () => string } = {} as {
+    [Property in keyof T]: () => string;
+  };
+
+  Object.keys(obj).map((k) => (res[k] = () => k));
+
+  return expression(res)();
 }
 
 export const contactDialogStore = create<ContactDialogState>((set) => ({
@@ -24,6 +39,21 @@ export const contactDialogStore = create<ContactDialogState>((set) => ({
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
+
+  const router = useRouter();
+
+  const contactForm = useContactForm(
+    ({ email, message, name, phone }, actions) => {
+      actions.setSubmitting(true);
+
+      setTimeout(() => {
+        actions.setSubmitting(false);
+        contactClose();
+
+        router.push('/contato-efetuado');
+      }, 5000);
+    }
+  );
 
   const contactOpen = contactDialogStore((state) => state.open);
   const contactClose = contactDialogStore((state) => state.closeDialog);
@@ -37,6 +67,44 @@ export default function MyApp(props: AppProps) {
       </ThemeSmoothScrollLayout>
 
       <ContactFormDialog
+        isSubmiting={contactForm.isSubmitting || !contactForm.isValid}
+        nameInputProps={{
+          name: 'name',
+          label: 'Nome',
+          onChange: contactForm.handleChange,
+          error: Boolean(contactForm.errors.name),
+          helperText: contactForm.errors.name,
+          placeholder: 'Ex: João Alves... ',
+          value: contactForm.values.name,
+        }}
+        emailInputProps={{
+          error: Boolean(contactForm.errors.email),
+          helperText: contactForm.errors.email,
+          label: 'Email',
+          name: 'email',
+          onChange: contactForm.handleChange,
+          placeholder: 'Ex: joao.alves@gmail.com...',
+          value: contactForm.values.email,
+        }}
+        messageInputProps={{
+          error: Boolean(contactForm.errors.message),
+          name: 'message',
+          helperText: contactForm.errors.message,
+          label: 'Mensagem',
+          placeholder: 'Digite uma mensagem para possamos melhor atendê-lo!',
+          onChange: contactForm.handleChange,
+          value: contactForm.values.message,
+        }}
+        phoneInputProps={{
+          error: Boolean(contactForm.errors.phone),
+          helperText: contactForm.errors.phone,
+          label: 'Telefone',
+          name: 'phone',
+          onChange: contactForm.handleChange,
+          placeholder: 'Ex (99) 9-9988-7766',
+          value: contactForm.values.phone,
+        }}
+        onSubmit={contactForm.submitForm}
         cancelLabel="Cancelar"
         submitLabel="Enviar"
         title="Contato"
