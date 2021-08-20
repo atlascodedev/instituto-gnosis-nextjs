@@ -13,7 +13,7 @@ import ContactFormDialog from '../components/contact-form-dialog/ContactFormDial
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import { ThemeProvider } from '@material-ui/core';
+import { ThemeProvider, CssBaseline } from '@material-ui/core';
 import createEmotionCache from '@emotion/cache';
 
 interface ContactDialogState {
@@ -86,6 +86,7 @@ export default function MyApp(props: AppProps) {
   return (
     <CacheProvider value={clientSideCache}>
       <ThemeProvider theme={theme}>
+        <CssBaseline />
         <ThemeSmoothScrollLayout>
           <AppLayout>
             <Head>
