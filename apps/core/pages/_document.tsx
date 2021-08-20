@@ -11,7 +11,7 @@ class CustomDocument extends Document {
 
   render() {
     return (
-      <Html lang="pt-br">
+      <Html style={{ fontSize: '62.5%' }} lang="pt-br">
         <Head>
           <link
             rel="apple-touch-icon"
