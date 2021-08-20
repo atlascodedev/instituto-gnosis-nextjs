@@ -1,6 +1,8 @@
 import { Box, Button } from '@material-ui/core';
 import { GiAlarmClock } from 'react-icons/gi';
 import { IoSchool } from 'react-icons/io5';
+import { courseDialogStore } from '../CourseDialog/store';
+import React from 'react';
 
 export interface CoursePageInformationProps {
   courseName: string;
@@ -21,6 +23,14 @@ export const CoursePageInformation = ({
   courseName,
   courseDuration,
 }: CoursePageInformationProps) => {
+  const setCourseOpen = courseDialogStore((state) => state.toggleVisibility);
+  const setCourseInfo = courseDialogStore((state) => state.setCourseInfo);
+
+  const handleCourseDialogOpen = React.useCallback(() => {
+    setCourseOpen(true);
+    setCourseInfo({ area: courseArea, level: courseLevel, name: courseName });
+  }, []);
+
   return (
     <Box
       sx={{
@@ -135,6 +145,7 @@ export const CoursePageInformation = ({
             variant="contained"
             color="primary"
             size="large"
+            onClick={handleCourseDialogOpen}
             sx={{
               width: 'fit-content',
               color: (theme) => theme.palette.secondary.main,

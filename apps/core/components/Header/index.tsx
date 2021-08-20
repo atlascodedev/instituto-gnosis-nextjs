@@ -8,7 +8,7 @@ import {
   useScrollbarContext,
 } from '@atlascode/core';
 import React from 'react';
-import { contactDialogStore } from 'apps/core/pages/_app';
+import { contactDialogStore } from '../GlobalContactDialog/store';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface HeaderProps {}
