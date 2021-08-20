@@ -15,6 +15,7 @@ import {
 } from '../types';
 import createCourseCollectionWithSlug from '../utility/courseCollectionSlug';
 import React from 'react';
+import Head from 'next/head';
 import { FaGraduationCap, FaSchool } from 'react-icons/fa';
 
 const mockExt = [];
@@ -43,6 +44,21 @@ export function Index({
 
   return (
     <div>
+      <Head>
+        <meta
+          property="og:title"
+          content="Instituto Educacional Gnosis - Cursos de pós-graduação na área da medicina."
+        />
+        <meta
+          property="og:description"
+          content="O Instituto Educacional Gnosis trabalha para trazer ao mercado cursos de pós-graduação, extensão e multidisciplinares capazes de impulsionar a sua carreira. Mantendo a excelência de uma instituição tradicional e trazendo ao mesmo tempo a modernidade do aprendizado à distância. Conheça nossos cursos de pós-graduação e extensão na área da medicina."
+        />
+        <meta
+          name="description"
+          content='content="O Instituto Educacional Gnosis trabalha para trazer ao mercado cursos de pós-graduação, extensão e multidisciplinares capazes de impulsionar a sua carreira. Mantendo a excelência de uma instituição tradicional e trazendo ao mesmo tempo a modernidade do aprendizado à distância. Conheça nossos cursos de pós-graduação e extensão na área da medicina."'
+        />
+      </Head>
+
       <GnosisLoader
         onAnimationStart={disableScroll}
         onAnimationEnd={enableScroll}

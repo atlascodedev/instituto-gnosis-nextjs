@@ -108,7 +108,12 @@ export const CoursePageTabs = ({
             <Box
               component="img"
               src={courseEmec.imageURL}
-              sx={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+              sx={{
+                width: '100%',
+                height: 'auto',
+                maxHeight: '500px',
+                objectFit: 'cover',
+              }}
             />
 
             <Button

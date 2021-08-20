@@ -18,6 +18,7 @@ import Contact from '../../../../../components/Contact';
 import { CourseCollectionType } from 'apps/core/types';
 import axios, { AxiosResponse } from 'axios';
 import convertToSlug from 'apps/core/utility/converToSlug';
+import Head from 'next/head';
 export interface CourseClass {
   duration: number | string;
   label: string;
@@ -49,6 +50,14 @@ const CoursePage = ({
         bgcolor: '#F6F9FB',
       }}
     >
+      <Head>
+        <title>
+          Instituto Educacional Gnosis -{' '}
+          {`${courseName} - ${courseLevel} - ${courseArea}`}
+        </title>
+
+        <meta property="description" content={courseDescription} />
+      </Head>
       <Container maxWidth="lg">
         <CoursePageInformation
           courseArea={courseArea}
@@ -146,11 +155,42 @@ export const getStaticProps: GetStaticProps<CoursePageProps> = async ({
   preview,
   previewData,
 }) => {
-  const paramsData = params;
+  const paramsData = params as {
+    level: string;
+    area: string;
+    slug: string;
+    id: string;
+  };
 
-  console.log(paramsData);
+  const courseByIdRequest: AxiosResponse<CourseCollectionType> =
+    await axios.get(`
+  https://us-central1-gnosis-webapp.cloudfunctions.net/api/collections/entries/coursesNew/${paramsData.id}
+  `);
+
+  const courseByIdRequestData = courseByIdRequest.data;
 
   return {
-    props: {} as any,
+    props: {
+      classes: courseByIdRequestData.courseSyllabus.map((value, index) => {
+        return {
+          duration: '15hrs',
+          label: value,
+        };
+      }),
+      courseArea: courseByIdRequestData.courseArea,
+      courseDescription: courseByIdRequestData.courseDescription,
+      courseDuration: courseByIdRequestData.courseDuration,
+      courseEmec: {
+        imageURL: courseByIdRequestData.courseEmecPicture.imageURL,
+        link: courseByIdRequestData.courseEmecURL,
+      },
+      courseImage: {
+        url: courseByIdRequestData.courseImage.imageURL,
+        alt: courseByIdRequestData.courseImage.imageDescription,
+      },
+      courseLevel: courseByIdRequestData.courseLevel,
+      courseName: courseByIdRequestData.courseName,
+      coursePrerequisites: 'no data',
+    },
   };
 };
