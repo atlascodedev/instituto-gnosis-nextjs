@@ -57,6 +57,8 @@ const GlobalContactDialog = (props: Props) => {
       } else {
         console.log('error');
       }
+
+      actions.setSubmitting(false);
     }
   );
 
