@@ -16,6 +16,27 @@ export interface CourseCollectionType {
   uuid: string;
   courseSyllabus: string[];
 }
-export interface BlogCollectionType {}
+export interface BlogCollectionType {
+  slug: string;
+  blogActive: boolean;
+  blogDescription: string;
+  blogPost: string;
+  blogTitle: string;
+  featuredImage: {
+    imageDescription: string;
+    imageURL: string;
+  };
+  uuid: string;
+}
 
-export interface TestimonialCollectionType {}
+export interface TestimonialCollectionType {
+  slug: string;
+  testimonialLocation: string;
+  testimonialName: string;
+  testimonialPicture: {
+    imageDescription: string;
+    imageURL: string;
+  };
+  testimonialText: string;
+  uuid: string;
+}

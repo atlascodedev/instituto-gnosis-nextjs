@@ -1,13 +1,12 @@
 import { Box, Fab } from '@material-ui/core';
 import { KeyboardArrowRight } from '@material-ui/icons';
 import SwiperSliderWrapper from '../swiper-react-wrapper/SwiperReactWrapper';
-import {
-  TestimonialCardRoundedProps,
-  TestimonialCardRounded,
-} from '@atlascode/core';
 import React from 'react';
 import { nanoid } from 'nanoid';
 import { useIsomorphicLayoutEffect } from 'react-use';
+import TestimonialCardRounded, {
+  TestimonialCardRoundedProps,
+} from '../../TestimonialRounded';
 
 export interface TestimonialSliderProps {
   items: TestimonialCardRoundedProps[];

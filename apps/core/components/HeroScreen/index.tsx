@@ -84,7 +84,7 @@ export function HeroScreenWhiteDots({
   patternColor = '#bbbbbb60',
   patternSize = '1px',
   backgroundColor = '#fff',
-  blobColor = 'primary',
+  blobColor = 'secondary',
   desktopPicture,
   picture,
   buttonVariant = 'contained',

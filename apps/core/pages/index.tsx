@@ -17,6 +17,7 @@ import createCourseCollectionWithSlug from '../utility/courseCollectionSlug';
 import React from 'react';
 import Head from 'next/head';
 import { FaGraduationCap, FaSchool } from 'react-icons/fa';
+import { useLocalStorage } from 'react-use';
 
 const mockExt = [];
 const mockMulti = [];
@@ -30,11 +31,39 @@ export interface IndexPageProps {
   testimonials?: TestimonialCollectionType[];
 }
 
+const IS_INITIAL_VISIT = 'INITIAL_VISIT';
+
+const setIfVisited = (
+  positiveCallback: (...args: unknown[]) => void,
+  negativeCallback: (...args: unknown[]) => void
+) => {
+  if (localStorage[IS_INITIAL_VISIT]) {
+    positiveCallback();
+  } else {
+    negativeCallback();
+    localStorage.setItem(IS_INITIAL_VISIT, 'true');
+  }
+};
+
 export function Index({
   courses,
   blog = [],
   testimonials = [],
 }: IndexPageProps) {
+  const [isInitialVisit, setIsInitialVisit] = React.useState(true);
+
+  console.log(blog);
+
+  console.log(isInitialVisit);
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIfVisited(
+        () => setIsInitialVisit(false),
+        () => setIsInitialVisit(true)
+      );
+    }
+  }, []);
+
   const { disableScroll, enableScroll, scrollIntoView } = useScrollbarContext();
 
   const coursesWithSlugMemo = React.useMemo(
@@ -59,10 +88,13 @@ export function Index({
         />
       </Head>
 
-      <GnosisLoader
-        onAnimationStart={disableScroll}
-        onAnimationEnd={enableScroll}
-      />
+      {isInitialVisit && (
+        <GnosisLoader
+          onAnimationStart={disableScroll}
+          onAnimationEnd={enableScroll}
+          animate={isInitialVisit}
+        />
+      )}
 
       <HeroScreen
         ctaLabel="Ver cursos"
@@ -89,15 +121,40 @@ export function Index({
       </div>
       <Newsletter />
 
-      {blog.length > 0 && (
+      {/* {blog.length > 0 && (
         <div>
-          <BlogPreview items={mockBlogPreview} />
+          <BlogPreview
+            items={blog.map((value, index) => {
+              return {
+                content: value.blogPost,
+                readingTime: true,
+                tags: ['Medicina'],
+                thumbnail: value.featuredImage.imageURL,
+                title: value.blogTitle,
+                color: 'primary',
+                rounded: true,
+              };
+            })}
+          />
         </div>
-      )}
+      )} */}
 
       {testimonials.length > 0 && (
         <div>
-          <Testimonials items={mockTestimonials} />
+          <Testimonials
+            items={testimonials.map((value, index) => {
+              return {
+                color: 'primary',
+                identification: value.testimonialLocation,
+                name: value.testimonialName,
+                testimonial: value.testimonialText,
+                image: {
+                  alt: value.testimonialPicture.imageDescription,
+                  src: value.testimonialPicture.imageURL,
+                },
+              };
+            })}
+          />
         </div>
       )}
     </div>
@@ -113,7 +170,7 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async ({
     'https://us-central1-gnosis-webapp.cloudfunctions.net/api/collections/entries/coursesNew'
   );
   const blogRequest: AxiosResponse<BlogCollectionType[]> = await axios.get(
-    'https://us-central1-gnosis-webapp.cloudfunctions.net/api/collections/entries/blog'
+    'https://us-central1-gnosis-webapp.cloudfunctions.net/api/collections/entries/gnosisBlog'
   );
   const testimonialRequest: AxiosResponse<TestimonialCollectionType[]> =
     await axios.get(
@@ -127,6 +184,8 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async ({
   return {
     props: {
       courses: courseData,
+      testimonials: testimonialData,
+      blog: blogData,
     },
   };
 };

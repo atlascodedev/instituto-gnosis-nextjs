@@ -16,6 +16,8 @@ const CourseDialog = (props: Props) => {
 
   return (
     <ContactFormDialog
+      cancelLabel="Cancelar"
+      submitLabel="Enviar"
       subtitle="Preencha o formulário e em breve um de nossos representantes entrará em contato para atendê-lo!"
       DialogProps={{ disablePortal: true, open: courseDialogOpen }}
       open={courseDialogOpen}

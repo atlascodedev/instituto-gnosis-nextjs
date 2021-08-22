@@ -31,11 +31,13 @@ const pathFillVariants: Variants = {
 export interface GnosisLoaderProps {
   onAnimationEnd?: (...args: unknown[]) => void;
   onAnimationStart?: (...args: unknown[]) => void;
+  animate?: boolean;
 }
 
 export const GnosisLoader = ({
   onAnimationEnd,
   onAnimationStart,
+  animate = true,
 }: GnosisLoaderProps) => {
   const logoAnimationControls = useAnimation();
 
@@ -68,7 +70,7 @@ export const GnosisLoader = ({
         zIndex: 200000,
       }}
       initial="bgInitial"
-      animate={logoAnimationControls}
+      animate={animate ? logoAnimationControls : undefined}
       variants={{
         bgHidden: {
           opacity: 0,

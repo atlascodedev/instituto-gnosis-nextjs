@@ -8,7 +8,7 @@ import SwiperCore, {
   Autoplay,
 } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { OfferCardProps, OfferCard } from '@atlascode/core';
+import OfferCard, { OfferCardProps } from '../../CourseCard';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
