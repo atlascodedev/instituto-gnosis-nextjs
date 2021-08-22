@@ -2,6 +2,8 @@ import useContactForm from 'apps/core/hooks/useContactForm';
 import React from 'react';
 import ContactFormDialog from '../contact-form-dialog/ContactFormDialog';
 import { courseDialogStore } from './store';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 interface Props {}
 
@@ -12,7 +14,31 @@ const CourseDialog = (props: Props) => {
   );
   const courseDialogInfo = courseDialogStore((state) => state.courseInfo);
 
-  const form = useContactForm((values, actions) => {});
+  const router = useRouter();
+
+  const form = useContactForm((values, actions) => {
+    if (process && process.env.NODE_ENV === 'production') {
+      axios
+        .post(
+          'https://us-central1-atlascodedev-landing.cloudfunctions.net/api/sendMail/gnosis-curso',
+          {
+            name: values.name,
+            email: values.email,
+            message: values.message,
+            phone: values.phone,
+            course: `${courseDialogInfo.name} - ${courseDialogInfo.area} - ${courseDialogInfo.level}`,
+          }
+        )
+        .then((result) => {
+          router.push('/contato-efetuado');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      router.push('/contato-efetuado');
+    }
+  });
 
   return (
     <ContactFormDialog
