@@ -4,6 +4,7 @@ import ContactFormDialog from '../contact-form-dialog/ContactFormDialog';
 import { courseDialogStore } from './store';
 import { useRouter } from 'next/router';
 import { submitCourseFormDialog } from './helpers';
+import { alertStore } from '../Alerts/store';
 
 interface Props {}
 
@@ -16,8 +17,15 @@ const CourseDialog = (props: Props) => {
 
   const router = useRouter();
 
+  const snackDispatch = alertStore((state) => state.dispatch);
+
   const form = useContactForm(async (values, actions) => {
     try {
+      snackDispatch({
+        message: 'Enviando sua solicitação...',
+        severity: 'info',
+      });
+
       await submitCourseFormDialog(
         values.name,
         values.email,
@@ -28,8 +36,18 @@ const CourseDialog = (props: Props) => {
 
       toggleCourseDialog(false);
 
+      snackDispatch({
+        message: 'Enviado com sucesso!',
+        severity: 'success',
+      });
+
       router.push('/contato-efetuado');
     } catch (error) {
+      snackDispatch({
+        message:
+          'Houve um erro ao tentar enviar a solicitação ao servidor, pedimos desculpas pela inconveniência.',
+        severity: 'error',
+      });
       console.log(error);
     }
   });

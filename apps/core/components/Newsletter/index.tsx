@@ -14,10 +14,25 @@ const Newsletter = (props: NewsletterProps) => {
 
   const handleSubmit = async () => {
     try {
-      axios.post(FORM_API_ROUTES.newsletter, { email: inputState });
+      setIsLoading(true);
+      dispatchSnack({ message: 'Enviando seu cadastro...', severity: 'info' });
+      await axios.post(FORM_API_ROUTES.newsletter, { email: inputState });
+
+      dispatchSnack({
+        message: 'Obrigado por cadastre-se em nossa newsletter!',
+        severity: 'success',
+      });
+      setInputState('');
     } catch (error) {
+      dispatchSnack({
+        severity: 'error',
+        message:
+          'Ocorreu um erro ao tentar enviar a solicitação ao servidor, pedimos desculpas pela inconveniência.',
+      });
       console.log(error);
     }
+
+    setIsLoading(false);
   };
 
   const dispatchSnack = alertStore((state) => state.dispatch);
@@ -86,9 +101,10 @@ const Newsletter = (props: NewsletterProps) => {
             placeholder="Ex. john.alves@gmail.com"
             minWidth={'200px'}
             buttonLabel="Enviar"
-            onClick={() =>
-              dispatchSnack({ message: 'Hello world', severity: 'success' })
-            }
+            value={inputState}
+            disabled={isLoading}
+            onChange={(event) => setInputState(event.target.value)}
+            onClick={handleSubmit}
             size="medium"
           />
         </Box>
