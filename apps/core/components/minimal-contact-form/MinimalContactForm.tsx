@@ -28,10 +28,8 @@ export interface MinimalContactFormProps {
   onSubmit?: (...args: unknown[]) => void;
   buttonProps?: {
     rightAlign?: boolean;
-    color?: 'primary' | 'secondary';
-    variant?: ButtonProps['variant'];
     label?: string;
-  };
+  } & ButtonProps;
 }
 
 export function MinimalContactForm({

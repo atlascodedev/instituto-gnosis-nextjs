@@ -10,6 +10,7 @@ import { ThemeProvider, CssBaseline } from '@material-ui/core';
 import createEmotionCache from '@emotion/cache';
 import GlobalContactDialog from '../components/GlobalContactDialog/GlobalContactDialog';
 import CourseDialog from '../components/CourseDialog/CourseDialog';
+import GlobalSnack from '../components/Alerts';
 
 export default function MyApp(
   props: AppProps & { emotionCache?: EmotionCache }
@@ -51,6 +52,7 @@ export default function MyApp(
 
         <GlobalContactDialog />
         <CourseDialog />
+        <GlobalSnack />
       </ThemeProvider>
     </CacheProvider>
   );

@@ -5,7 +5,11 @@ import {
 } from '@atlascode/core';
 import { Box, useTheme, useMediaQuery } from '@material-ui/core';
 import React from 'react';
+import { contactDialogStore } from '../GlobalContactDialog/store';
 import MinimalContactForm from '../minimal-contact-form/MinimalContactForm';
+import { useRouter } from 'next/router';
+import useContactForm from 'apps/core/hooks/useContactForm';
+import submitContactDialog from '../GlobalContactDialog/helpers';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ContactProps extends MinimalFormPicOverBlobProps {}
@@ -83,6 +87,24 @@ export function MinimalFormPicOverBlob({
     setBlobFilter(filterResult);
   }, [blobColor, theme.palette]);
 
+  const router = useRouter();
+
+  const contactForm = useContactForm(
+    async ({ email, message, name, phone }, actions) => {
+      actions.setSubmitting(true);
+
+      try {
+        const response = await submitContactDialog(name, email, message, phone);
+
+        router.push('/contato-efetuado');
+      } catch (error) {
+        console.log('error');
+      }
+
+      actions.setSubmitting(false);
+    }
+  );
+
   return (
     <Box
       sx={{
@@ -102,7 +124,49 @@ export function MinimalFormPicOverBlob({
         }}
       >
         <Box sx={{ alignSelf: 'center', px: { xs: '3rem', lg: '0rem' } }}>
-          <MinimalContactForm {...formProps} />
+          <MinimalContactForm
+            buttonProps={{
+              onClick: contactForm.submitForm,
+              disabled: !contactForm.isValid || contactForm.isSubmitting,
+            }}
+            emailInputProps={{
+              value: contactForm.values.email,
+              error: Boolean(contactForm.errors.email),
+              helperText: contactForm.errors.email,
+              name: 'email',
+              onChange: contactForm.handleChange,
+              label: 'E-mail',
+              placeholder: 'Ex. joao.alves@gmail.com',
+            }}
+            messageInputProps={{
+              value: contactForm.values.message,
+              error: Boolean(contactForm.errors.message),
+              helperText: contactForm.errors.message,
+              name: 'message',
+              onChange: contactForm.handleChange,
+              label: 'Mensagem',
+              placeholder: 'Ex. Quero saber mais sobre as opções de...',
+            }}
+            nameInputProps={{
+              value: contactForm.values.name,
+              error: Boolean(contactForm.errors.name),
+              helperText: contactForm.errors.name,
+              name: 'name',
+              onChange: contactForm.handleChange,
+              label: 'Nome',
+              placeholder: 'Ex. John Alves',
+            }}
+            phoneInputProps={{
+              value: contactForm.values.phone,
+              error: Boolean(contactForm.errors.phone),
+              helperText: contactForm.errors.phone,
+              name: 'phone',
+              onChange: contactForm.handleChange,
+              label: 'Telefone',
+              placeholder: 'Ex. (99) 9-9988-7766',
+            }}
+            {...formProps}
+          />
         </Box>
         <Box
           component="figure"

@@ -3,6 +3,7 @@ import { Box } from '@material-ui/core';
 import React from 'react';
 import axios from 'axios';
 import { FORM_API_ROUTES } from 'apps/core/constants';
+import { alertStore } from '../Alerts/store';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface NewsletterProps {}
@@ -18,6 +19,8 @@ const Newsletter = (props: NewsletterProps) => {
       console.log(error);
     }
   };
+
+  const dispatchSnack = alertStore((state) => state.dispatch);
 
   return (
     <Box
@@ -83,6 +86,9 @@ const Newsletter = (props: NewsletterProps) => {
             placeholder="Ex. john.alves@gmail.com"
             minWidth={'200px'}
             buttonLabel="Enviar"
+            onClick={() =>
+              dispatchSnack({ message: 'Hello world', severity: 'success' })
+            }
             size="medium"
           />
         </Box>
