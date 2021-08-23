@@ -4,6 +4,18 @@ const API_ROUTE_BASE = IS_PROD
   ? 'https://us-central1-gnosis-webapp.cloudfunctions.net/api'
   : 'http://127.0.0.1:5001/gnosis-webapp/us-central1/api';
 
+/**
+ * Contact required body - {name: string, email: string, phone: string, message: string}
+ *
+ * Course required body - {name: string, email: string, phone: string, message: string, course: string}
+ */
+export const EMAIL_API_ROUTES = {
+  contact:
+    'https://us-central1-atlascodedev-landing.cloudfunctions.net/api/sendMail/gnosis',
+  course:
+    'https://us-central1-atlascodedev-landing.cloudfunctions.net/api/sendMail/gnosis-curso',
+};
+
 export const FORM_API_ROUTES = {
   contactForm: `${API_ROUTE_BASE}/forms/contact`,
   courseInterest: `${API_ROUTE_BASE}/forms/course-interest`,

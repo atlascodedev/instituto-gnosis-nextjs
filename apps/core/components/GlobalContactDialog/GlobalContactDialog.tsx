@@ -4,6 +4,7 @@ import ContactFormDialog from '../contact-form-dialog/ContactFormDialog';
 import { useRouter } from 'next/router';
 import { contactDialogStore } from './store';
 import axios, { AxiosResponse } from 'axios';
+import { EMAIL_API_ROUTES } from 'apps/core/constants';
 
 interface Props {}
 
@@ -15,15 +16,27 @@ const submitContactDialog = async (
   rejectionTest?: boolean
 ) => {
   if (process.env.NODE_ENV === 'production') {
-    return axios.post(
-      'https://us-central1-atlascodedev-landing.cloudfunctions.net/api/sendMail/gnosis',
-      {
-        name: name,
-        email: email,
-        message: message,
-        phone: phone,
-      }
-    );
+    return axios
+      .post(
+        'https://us-central1-atlascodedev-landing.cloudfunctions.net/api/sendMail/gnosis',
+        {
+          name: name,
+          email: email,
+          message: message,
+          phone: phone,
+        }
+      )
+      .then(() => {
+        axios.post(EMAIL_API_ROUTES.contact, {
+          name: name,
+          email: email,
+          message: message,
+          phone: phone,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   } else {
     return new Promise((resolve, reject) => {
       if (rejectionTest) {
