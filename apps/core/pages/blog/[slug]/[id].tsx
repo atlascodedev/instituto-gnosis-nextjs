@@ -7,8 +7,28 @@ import { BlogCollectionType } from 'apps/core/types';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface BlogPageProps extends BlogLayoutV1Props {}
 
-const BlogPage = (props: BlogPageProps) => {
-  return <BlogLayoutV1 {...props} />;
+const BlogPage = ({
+  readingTime = true,
+  content = '',
+  date = new Date().toDateString(),
+  featuredImage = '',
+  latestPosts = [],
+  socials = {},
+  tags = [],
+  title = 'Placeholder title',
+}: BlogPageProps) => {
+  return (
+    <BlogLayoutV1
+      readingTime={readingTime}
+      content={content}
+      date={date}
+      featuredImage={featuredImage}
+      latestPosts={latestPosts}
+      socials={socials}
+      tags={tags}
+      title={title}
+    />
+  );
 };
 
 export default BlogPage;
