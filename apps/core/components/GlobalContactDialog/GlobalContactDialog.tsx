@@ -4,49 +4,10 @@ import ContactFormDialog from '../contact-form-dialog/ContactFormDialog';
 import { useRouter } from 'next/router';
 import { contactDialogStore } from './store';
 import axios, { AxiosResponse } from 'axios';
-import { EMAIL_API_ROUTES } from 'apps/core/constants';
+import { EMAIL_API_ROUTES, FORM_API_ROUTES } from 'apps/core/constants';
+import submitContactDialog from './helpers';
 
 interface Props {}
-
-const submitContactDialog = async (
-  name: string,
-  email: string,
-  message: string,
-  phone: string,
-  rejectionTest?: boolean
-) => {
-  if (process.env.NODE_ENV === 'production') {
-    return axios
-      .post(
-        'https://us-central1-atlascodedev-landing.cloudfunctions.net/api/sendMail/gnosis',
-        {
-          name: name,
-          email: email,
-          message: message,
-          phone: phone,
-        }
-      )
-      .then(() => {
-        axios.post(EMAIL_API_ROUTES.contact, {
-          name: name,
-          email: email,
-          message: message,
-          phone: phone,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  } else {
-    return new Promise((resolve, reject) => {
-      if (rejectionTest) {
-        reject({ status: 500 });
-      } else {
-        resolve({ status: 200 });
-      }
-    });
-  }
-};
 
 const GlobalContactDialog = (props: Props) => {
   const router = useRouter();
@@ -58,16 +19,10 @@ const GlobalContactDialog = (props: Props) => {
     async ({ email, message, name, phone }, actions) => {
       actions.setSubmitting(true);
 
-      const response = (await submitContactDialog(
-        name,
-        email,
-        message,
-        phone
-      )) as AxiosResponse<any>;
-
-      if (response.status === 200) {
-        router.push('contato-efetuado');
-      } else {
+      try {
+        const response = await submitContactDialog(name, email, message, phone);
+        router.push('/contato-efetuado');
+      } catch (error) {
         console.log('error');
       }
 

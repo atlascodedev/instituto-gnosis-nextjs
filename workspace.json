@@ -22,7 +22,7 @@
           "options": {
             "buildTarget": "core:build",
             "dev": true,
-            "port": 3000
+            "port": 3001
           },
           "configurations": {
             "production": {
