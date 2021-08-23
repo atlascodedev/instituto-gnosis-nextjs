@@ -123,13 +123,11 @@ export function MinimalContactForm({
               maxWidth: 'fit-content',
               fontSize: '1.5rem',
               textTransform: 'inherit',
-              ...(buttonProps.rightAlign
-                ? (buttonRightAlign as Record<string, unknown>)
-                : {}),
             }}
             variant="contained"
             color={buttonProps.color}
             size="large"
+            {...buttonProps}
           >
             {buttonProps.label}
           </Button>

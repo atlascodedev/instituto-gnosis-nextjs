@@ -8,6 +8,7 @@ export default function GlobalSnack() {
   const alertVisible = alertStore((state) => state.open);
   const alertSeverity = alertStore((state) => state.severity);
   const alertMessage = alertStore((state) => state.message);
+  const alertOrigin = alertStore((state) => state.origin);
   const toggleAlertVisibility = alertStore((state) => state.toggleVisibility);
 
   return (
@@ -15,6 +16,7 @@ export default function GlobalSnack() {
       <Snackbar
         open={alertVisible}
         autoHideDuration={6000}
+        anchorOrigin={alertOrigin}
         onClose={() => toggleAlertVisibility(false)}
       >
         <Alert

@@ -10,6 +10,7 @@ import MinimalContactForm from '../minimal-contact-form/MinimalContactForm';
 import { useRouter } from 'next/router';
 import useContactForm from 'apps/core/hooks/useContactForm';
 import submitContactDialog from '../GlobalContactDialog/helpers';
+import { alertStore } from '../Alerts/store';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ContactProps extends MinimalFormPicOverBlobProps {}
@@ -89,15 +90,26 @@ export function MinimalFormPicOverBlob({
 
   const router = useRouter();
 
+  const dispatchAlert = alertStore((state) => state.dispatch);
+
   const contactForm = useContactForm(
     async ({ email, message, name, phone }, actions) => {
       actions.setSubmitting(true);
-
+      dispatchAlert({ message: 'Enviando sua mensagem', severity: 'info' });
       try {
         const response = await submitContactDialog(name, email, message, phone);
-
+        dispatchAlert({
+          message: 'Mensagem enviada com sucesso!',
+          severity: 'success',
+        });
+        actions.resetForm();
         router.push('/contato-efetuado');
       } catch (error) {
+        dispatchAlert({
+          message:
+            'Houve um erro ao tentar enviar a sua mensagem, pedimos desculpas pela inconveniência.',
+          severity: 'error',
+        });
         console.log('error');
       }
 
@@ -126,6 +138,7 @@ export function MinimalFormPicOverBlob({
         <Box sx={{ alignSelf: 'center', px: { xs: '3rem', lg: '0rem' } }}>
           <MinimalContactForm
             buttonProps={{
+              label: 'Enviar',
               onClick: contactForm.submitForm,
               disabled: !contactForm.isValid || contactForm.isSubmitting,
             }}

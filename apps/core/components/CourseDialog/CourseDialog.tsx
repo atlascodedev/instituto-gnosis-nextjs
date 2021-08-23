@@ -27,6 +27,7 @@ const CourseDialog = (props: Props) => {
       );
 
       toggleCourseDialog(false);
+
       router.push('/contato-efetuado');
     } catch (error) {
       console.log(error);
