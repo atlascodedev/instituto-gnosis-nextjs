@@ -35,11 +35,17 @@ const Header = (props: HeaderProps) => {
   const items = [
     {
       action: () =>
-        handleScrollIntoView(() => scrollIntoView('#courses_section')),
+        handleScrollIntoView(() => {
+          scrollIntoView('#courses_section');
+          setMenuState(false);
+        }),
       label: 'Cursos',
     },
     {
-      action: () => handleScrollIntoView(() => scrollIntoView('#contact_form')),
+      action: () => {
+        handleScrollIntoView(() => scrollIntoView('#contact_form'));
+        setMenuState(false);
+      },
       label: 'Contato',
     },
   ];

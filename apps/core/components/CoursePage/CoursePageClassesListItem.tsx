@@ -22,12 +22,12 @@ const CoursePageClassesListItem = ({
       <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: '20% 1fr',
+          gridTemplateColumns: 'auto',
           width: '100%',
           height: '100%',
         }}
       >
-        <Box
+        {/* <Box
           sx={{
             display: 'flex',
             alignItems: 'center',
@@ -40,7 +40,7 @@ const CoursePageClassesListItem = ({
         >
           <Box component={AiOutlineClockCircle} />
           <Box>{duration}</Box>
-        </Box>
+        </Box> */}
 
         <Box
           sx={{

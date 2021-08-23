@@ -32,7 +32,6 @@ export const CoursePageTabs = ({
           indicatorColor="secondary"
         >
           <Tab label="Matriz curricular" />
-          <Tab label="Modalidade" />
           <Tab label="Pré-requisitos" />
           <Tab label="E-MEC" />
         </Tabs>
@@ -46,6 +45,7 @@ export const CoursePageTabs = ({
             })}
           />
         </TabPanel>
+
         <TabPanel value={activeTab} index={1}>
           <Box
             sx={{
@@ -65,35 +65,12 @@ export const CoursePageTabs = ({
                 color: (theme) => theme.palette.primary.main,
               }}
             >
-              Unknown
-            </Box>
-          </Box>
-        </TabPanel>
-        <TabPanel value={activeTab} index={2}>
-          <Box
-            sx={{
-              display: 'flex',
-              width: '100%',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Box
-              component="h2"
-              sx={{
-                m: 0,
-                p: 0,
-                fontWeight: 600,
-                fontSize: 'clamp(16px, 5vw, 25px',
-                color: (theme) => theme.palette.primary.main,
-              }}
-            >
-              {coursePrerequisites}
+              Diploma de medicina válido no Brasil
             </Box>
           </Box>
         </TabPanel>
 
-        <TabPanel value={activeTab} index={3}>
+        <TabPanel value={activeTab} index={2}>
           <Box
             sx={{
               display: 'flex',
@@ -109,9 +86,9 @@ export const CoursePageTabs = ({
               component="img"
               src={courseEmec.imageURL}
               sx={{
-                width: '100%',
+                width: 'auto',
                 height: 'auto',
-                maxHeight: '500px',
+                maxHeight: '350px',
                 objectFit: 'cover',
               }}
             />

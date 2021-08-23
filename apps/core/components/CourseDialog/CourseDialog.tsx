@@ -26,6 +26,7 @@ const CourseDialog = (props: Props) => {
         `${courseDialogInfo.name} - ${courseDialogInfo.area} - ${courseDialogInfo.level}`
       );
 
+      toggleCourseDialog(false);
       router.push('/contato-efetuado');
     } catch (error) {
       console.log(error);

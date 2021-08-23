@@ -52,7 +52,10 @@ export function Index({
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
       setIfVisited(
-        () => setIsInitialVisit(false),
+        () => {
+          setIsInitialVisit(false);
+          enableScroll();
+        },
         () => setIsInitialVisit(true)
       );
     }

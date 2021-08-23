@@ -21,6 +21,8 @@ const GlobalContactDialog = (props: Props) => {
 
       try {
         const response = await submitContactDialog(name, email, message, phone);
+        contactClose();
+
         router.push('/contato-efetuado');
       } catch (error) {
         console.log('error');

@@ -1,11 +1,24 @@
 import { NewsLetterInput } from '@atlascode/core';
 import { Box } from '@material-ui/core';
 import React from 'react';
+import axios from 'axios';
+import { FORM_API_ROUTES } from 'apps/core/constants';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface NewsletterProps {}
 
 const Newsletter = (props: NewsletterProps) => {
+  const [inputState, setInputState] = React.useState<string>('');
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+  const handleSubmit = async () => {
+    try {
+      axios.post(FORM_API_ROUTES.newsletter, { email: inputState });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -67,6 +80,7 @@ const Newsletter = (props: NewsletterProps) => {
           </Box>
 
           <NewsLetterInput
+            placeholder="Ex. john.alves@gmail.com"
             minWidth={'200px'}
             buttonLabel="Enviar"
             size="medium"

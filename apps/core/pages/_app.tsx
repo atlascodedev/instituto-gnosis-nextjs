@@ -35,7 +35,7 @@ export default function MyApp(
               variants={{
                 visible: {
                   opacity: 1,
-                  zIndex: 5000,
+                  zIndex: 2000,
                 },
                 hidden: {
                   opacity: 0,
