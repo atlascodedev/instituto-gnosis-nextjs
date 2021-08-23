@@ -21,9 +21,6 @@ import { useLocalStorage } from 'react-use';
 
 const mockExt = [];
 const mockMulti = [];
-const mockPos = [];
-const mockTestimonials = [];
-const mockBlogPreview = [];
 
 export interface IndexPageProps {
   courses: CourseCollectionType[];
@@ -52,9 +49,6 @@ export function Index({
 }: IndexPageProps) {
   const [isInitialVisit, setIsInitialVisit] = React.useState(true);
 
-  console.log(blog);
-
-  console.log(isInitialVisit);
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
       setIfVisited(
