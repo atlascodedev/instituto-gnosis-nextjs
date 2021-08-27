@@ -74,11 +74,11 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async ({
 
   return {
     props: {
-      title: data.blogTitle,
+      title: '',
       readingTime: true,
-      content: data.blogPost,
+      content: '',
       date: new Date().toDateString(),
-      featuredImage: data.featuredImage.imageURL,
+      featuredImage: '',
       latestPosts: [],
       socials: {},
       tags: [],

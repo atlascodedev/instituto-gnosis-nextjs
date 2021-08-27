@@ -1,0 +1,19 @@
+{
+  "hosting": {
+    "target": "micro",
+    "rewrites": [
+      {
+        "source": "**",
+        "run": {
+          "serviceId": "gnosis-next"
+        }
+      }
+    ],
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

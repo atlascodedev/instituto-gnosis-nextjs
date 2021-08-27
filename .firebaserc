@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "gnosis-webapp"
+  },
+  "targets": {
+    "gnosis-webapp": {
+      "hosting": {
+        "micro": [
+          "gnosis-micro"
+        ]
+      }
+    }
+  }
+}
