@@ -221,7 +221,9 @@ const FooterIcons = ({
           fontSize: { xs: "16px", lg: "30px" },
         }}
       >
-        <Facebook sx={{ fontSize: "inherit" }} />
+        <Link color="inherit" href={facebook} target={"_blank"}>
+          <Facebook sx={{ fontSize: "inherit" }} />
+        </Link>
       </IconButton>
 
       <IconButton
@@ -231,7 +233,7 @@ const FooterIcons = ({
           fontSize: { xs: "16px", lg: "30px" },
         }}
       >
-        <Link href={facebook} target={"_blank"}>
+        <Link color="inherit" href={instagram} target={"_blank"}>
           <Instagram sx={{ fontSize: "inherit" }} />
         </Link>
       </IconButton>
@@ -243,7 +245,7 @@ const FooterIcons = ({
           fontSize: { xs: "16px", lg: "30px" },
         }}
       >
-        <Link href={whatsApp} target={"_blank"}>
+        <Link color="inherit" href={whatsApp} target={"_blank"}>
           <WhatsApp sx={{ fontSize: "inherit" }} />
         </Link>
       </IconButton>
@@ -255,7 +257,7 @@ const FooterIcons = ({
           fontSize: { xs: "16px", lg: "30px" },
         }}
       >
-        <Link href={twitter} target={"_blank"}>
+        <Link color="inherit" href={twitter} target={"_blank"}>
           <Twitter sx={{ fontSize: "inherit" }} />
         </Link>
       </IconButton>
@@ -267,7 +269,7 @@ const FooterIcons = ({
           fontSize: { xs: "16px", lg: "30px" },
         }}
       >
-        <Link href={youtube} target="_blank">
+        <Link color="inherit" href={youtube} target="_blank">
           <YouTube sx={{ fontSize: "inherit" }} />
         </Link>
       </IconButton>
@@ -279,7 +281,7 @@ const FooterIcons = ({
           fontSize: { xs: "16px", lg: "30px" },
         }}
       >
-        <Link target={"_blank"} href={youtube}>
+        <Link color="inherit" target={"_blank"} href={youtube}>
           <LinkedIn sx={{ fontSize: "inherit" }} />
         </Link>
       </IconButton>
