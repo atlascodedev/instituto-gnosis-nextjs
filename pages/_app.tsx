@@ -49,6 +49,9 @@ export default function MyApp(
                   zIndex: -1,
                 },
               }}
+              transition={{
+                duration: 1.5,
+              }}
               sx={{ width: "100%", height: "100%" }}
             >
               <Component {...pageProps} />

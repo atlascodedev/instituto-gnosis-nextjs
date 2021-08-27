@@ -17,14 +17,35 @@ import React from "react";
 import Head from "next/head";
 import { FaGraduationCap, FaSchool } from "react-icons/fa";
 
-const mockExt = [] as any[];
-const mockMulti = [] as any[];
-
 export interface IndexPageProps {
   courses: CourseCollectionType[];
   blog?: BlogCollectionType[];
   testimonials?: TestimonialCollectionType[];
 }
+
+const getCourseByLevel = (courses: CourseCollectionType[]) => {
+  const multiCategory = "MULTIDISCIPLINAR";
+  const posCategory = "POS-GRADUCAO";
+  const extCategory = "EXTENSAO";
+
+  const coursesMulti = courses.filter((value, index) => {
+    return value.courseLevel === multiCategory;
+  });
+
+  const coursePos = courses.filter((value, index) => {
+    return value.courseLevel === posCategory;
+  });
+
+  const courseExt = courses.filter((value, index) => {
+    return value.courseLevel === extCategory;
+  });
+
+  return {
+    coursePos,
+    coursesMulti,
+    courseExt,
+  };
+};
 
 const IS_INITIAL_VISIT = "INITIAL_VISIT";
 
@@ -47,6 +68,10 @@ export function Index({
 }: IndexPageProps) {
   const [isInitialVisit, setIsInitialVisit] = React.useState(true);
 
+  const coursesSeparated = React.useMemo(() => {
+    return getCourseByLevel(courses);
+  }, []);
+
   React.useEffect(() => {
     if (typeof window !== "undefined") {
       setIfVisited(
@@ -61,8 +86,18 @@ export function Index({
 
   const { disableScroll, enableScroll, scrollIntoView } = useScrollbarContext();
 
-  const coursesWithSlugMemo = React.useMemo(
-    () => createCourseCollectionWithSlug(courses),
+  const courseMultiWithSlug = React.useMemo(
+    () => createCourseCollectionWithSlug(coursesSeparated.coursesMulti),
+    []
+  );
+
+  const coursePosWithSlug = React.useMemo(
+    () => createCourseCollectionWithSlug(coursesSeparated.coursePos),
+    []
+  );
+
+  const courseExtWithSlug = React.useMemo(
+    () => createCourseCollectionWithSlug(coursesSeparated.courseExt),
     []
   );
 
@@ -98,9 +133,31 @@ export function Index({
       <ProductDefense />
       <div id="courses_section">
         <Courses
-          coursesExt={mockExt}
-          coursesMulti={mockMulti}
-          coursesPos={coursesWithSlugMemo.map((value, index) => {
+          coursesExt={courseExtWithSlug.map((value, index) => {
+            return {
+              img: value.courseImage.imageURL,
+              redirectLink: value.slug,
+              items: [
+                { icon: FaGraduationCap, text: value.courseArea },
+                { icon: FaSchool, text: value.courseLevel },
+              ],
+              title: value.courseName,
+              zoomEffect: true,
+            };
+          })}
+          coursesMulti={courseMultiWithSlug.map((value, index) => {
+            return {
+              img: value.courseImage.imageURL,
+              redirectLink: value.slug,
+              items: [
+                { icon: FaGraduationCap, text: value.courseArea },
+                { icon: FaSchool, text: value.courseLevel },
+              ],
+              title: value.courseName,
+              zoomEffect: true,
+            };
+          })}
+          coursesPos={coursePosWithSlug.map((value, index) => {
             return {
               img: value.courseImage.imageURL,
               redirectLink: value.slug,
