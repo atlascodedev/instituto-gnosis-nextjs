@@ -62,8 +62,8 @@ const Header = (props: HeaderProps) => {
       scrollbarInstance?.addListener((status) => {
         const offset = status.offset;
 
-        mobileHeaderRef!.current!.style.top = offset.y + "px";
-        desktopHeaderRef!.current!.style.top = offset.y + "px";
+        (mobileHeaderRef as any).current.style.top = offset.y + "px";
+        (desktopHeaderRef as any).current.style.top = offset.y + "px";
       });
     }
   }, [scrollbarInstance]);

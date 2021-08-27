@@ -26,26 +26,26 @@ export default function MyApp(
   return (
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={theme}>
-        <ThemeSmoothScrollLayout>
-          <MotionBox
-            key={router.route}
-            animate="visible"
-            initial="hidden"
-            variants={{
-              visible: {
-                opacity: 1,
-                zIndex: 3000,
-              },
-              hidden: {
-                opacity: 0,
-                zIndex: -1,
-              },
-            }}
-            transition={{
-              duration: 1,
-            }}
-            sx={{ width: "100%", height: "100%" }}
-          >
+        <MotionBox
+          animate="visible"
+          initial="hidden"
+          variants={{
+            visible: {
+              opacity: 1,
+              zIndex: 3000,
+            },
+            hidden: {
+              opacity: 0,
+              zIndex: -1,
+            },
+          }}
+          transition={{
+            duration: 1,
+          }}
+          sx={{ width: "100%", height: "100%" }}
+          key={router.route}
+        >
+          <ThemeSmoothScrollLayout>
             <AppLayout>
               <CssBaseline />
               <Head>
@@ -57,8 +57,8 @@ export default function MyApp(
 
               <Component {...pageProps} />
             </AppLayout>
-          </MotionBox>
-        </ThemeSmoothScrollLayout>
+          </ThemeSmoothScrollLayout>
+        </MotionBox>
 
         <GlobalContactDialog />
         <CourseDialog />
