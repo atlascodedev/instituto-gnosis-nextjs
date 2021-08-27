@@ -109,7 +109,7 @@ const Header = (props: HeaderProps) => {
             lg: "block",
             position: "fixed",
             width: "100%",
-            zIndex: 1000,
+            zIndex: 500,
           },
         }}
       >

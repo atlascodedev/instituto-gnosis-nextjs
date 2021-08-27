@@ -27,36 +27,37 @@ export default function MyApp(
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={theme}>
         <ThemeSmoothScrollLayout>
-          <AppLayout>
-            <CssBaseline />
-            <Head>
-              <title>
-                Instituto Educacional Gnosis - Cursos de pós-graduação na área
-                de medicina.
-              </title>
-            </Head>
-            <MotionBox
-              key={router.route}
-              animate="visible"
-              initial="hidden"
-              variants={{
-                visible: {
-                  opacity: 1,
-                  zIndex: 3000,
-                },
-                hidden: {
-                  opacity: 0,
-                  zIndex: -1,
-                },
-              }}
-              transition={{
-                duration: 1.5,
-              }}
-              sx={{ width: "100%", height: "100%" }}
-            >
+          <MotionBox
+            key={router.route}
+            animate="visible"
+            initial="hidden"
+            variants={{
+              visible: {
+                opacity: 1,
+                zIndex: 3000,
+              },
+              hidden: {
+                opacity: 0,
+                zIndex: -1,
+              },
+            }}
+            transition={{
+              duration: 1,
+            }}
+            sx={{ width: "100%", height: "100%" }}
+          >
+            <AppLayout>
+              <CssBaseline />
+              <Head>
+                <title>
+                  Instituto Educacional Gnosis - Cursos de pós-graduação na área
+                  de medicina.
+                </title>
+              </Head>
+
               <Component {...pageProps} />
-            </MotionBox>
-          </AppLayout>
+            </AppLayout>
+          </MotionBox>
         </ThemeSmoothScrollLayout>
 
         <GlobalContactDialog />

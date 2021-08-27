@@ -1,7 +1,7 @@
-import { TabPanel } from '@atlascode/core';
-import { Box, Button, Tab, Tabs } from '@material-ui/core';
-import { CourseClass } from '../../pages/cursos/[level]/[area]/[slug]/[id]';
-import CoursePageClassesList from './CoursePageClassesList';
+import { TabPanel } from "@atlascode/core";
+import { Box, Button, Tab, Tabs } from "@material-ui/core";
+import { CourseClass } from "../../pages/cursos/[level]/[area]/[slug]/[id]";
+import CoursePageClassesList from "./CoursePageClassesList";
 
 export interface CoursePageTabsProps {
   classes: CourseClass[];
@@ -49,10 +49,10 @@ export const CoursePageTabs = ({
         <TabPanel value={activeTab} index={1}>
           <Box
             sx={{
-              display: 'flex',
-              width: '100%',
-              justifyContent: 'center',
-              alignItems: 'center',
+              display: "flex",
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
             <Box
@@ -61,7 +61,7 @@ export const CoursePageTabs = ({
                 m: 0,
                 p: 0,
                 fontWeight: 600,
-                fontSize: 'clamp(16px, 5vw, 25px',
+                fontSize: "clamp(16px, 5vw, 25px",
                 color: (theme) => theme.palette.primary.main,
               }}
             >
@@ -73,28 +73,29 @@ export const CoursePageTabs = ({
         <TabPanel value={activeTab} index={2}>
           <Box
             sx={{
-              display: 'flex',
-              width: '100%',
-              height: { xs: 'auto', lg: 'auto' },
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexDirection: 'column',
-              gap: '35px',
+              display: "flex",
+              width: "100%",
+              height: { xs: "auto", lg: "auto" },
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
+              gap: "35px",
             }}
           >
             <Box
               component="img"
               src={courseEmec.imageURL}
               sx={{
-                width: 'auto',
-                height: 'auto',
-                maxHeight: '350px',
-                objectFit: 'cover',
+                width: "auto",
+                height: "auto",
+                maxHeight: "350px",
+                maxWidth: "80%",
+                objectFit: "cover",
               }}
             />
 
             <Button
-              LinkComponent={'a'}
+              LinkComponent={"a"}
               target="_blank"
               href={courseEmec.link}
               variant="text"
