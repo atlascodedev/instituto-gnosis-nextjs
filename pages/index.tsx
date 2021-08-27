@@ -16,6 +16,8 @@ import createCourseCollectionWithSlug from "../utility/courseCollectionSlug";
 import React from "react";
 import Head from "next/head";
 import { FaGraduationCap, FaSchool } from "react-icons/fa";
+import convertToSlug from "../utility/converToSlug";
+import { getCalendarPickerSkeletonUtilityClass } from "@material-ui/lab";
 
 export interface IndexPageProps {
   courses: CourseCollectionType[];
@@ -25,19 +27,21 @@ export interface IndexPageProps {
 
 const getCourseByLevel = (courses: CourseCollectionType[]) => {
   const multiCategory = "MULTIDISCIPLINAR";
-  const posCategory = "POS-GRADUCAO";
+  const posCategory = "POS-GRADUACAO";
   const extCategory = "EXTENSAO";
 
   const coursesMulti = courses.filter((value, index) => {
-    return value.courseLevel === multiCategory;
+    return convertToSlug(value.courseLevel).toUpperCase() === multiCategory;
   });
 
   const coursePos = courses.filter((value, index) => {
-    return value.courseLevel === posCategory;
+    console.log(convertToSlug(value.courseLevel).toUpperCase(), posCategory);
+
+    return convertToSlug(value.courseLevel).toUpperCase() === posCategory;
   });
 
   const courseExt = courses.filter((value, index) => {
-    return value.courseLevel === extCategory;
+    return convertToSlug(value.courseLevel).toUpperCase() === extCategory;
   });
 
   return {
@@ -70,7 +74,7 @@ export function Index({
 
   const coursesSeparated = React.useMemo(() => {
     return getCourseByLevel(courses);
-  }, []);
+  }, [courses]);
 
   React.useEffect(() => {
     if (typeof window !== "undefined") {
@@ -172,24 +176,6 @@ export function Index({
         />
       </div>
       <Newsletter />
-
-      {/* {blog.length > 0 && (
-        <div>
-          <BlogPreview
-            items={blog.map((value, index) => {
-              return {
-                content: value.blogPost,
-                readingTime: true,
-                tags: ['Medicina'],
-                thumbnail: value.featuredImage.imageURL,
-                title: value.blogTitle,
-                color: 'primary',
-                rounded: true,
-              };
-            })}
-          />
-        </div>
-      )} */}
 
       {testimonials.length > 0 && (
         <div>

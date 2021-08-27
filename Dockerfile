@@ -26,7 +26,7 @@ RUN cd /app && pnpm run build
 # --- Server connection node --- #
 ENV PORT=8080
 EXPOSE 8080
-# WORKDIR /app/dist/apps/core
+WORKDIR /app
 
 CMD ["npm", "start", "--", "--port", "8080"]
 
