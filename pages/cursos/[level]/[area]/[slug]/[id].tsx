@@ -1,24 +1,21 @@
-import { Box, Container } from '@material-ui/core';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import React from 'react';
+import { Box, Container } from "@material-ui/core";
+import { GetStaticPaths, GetStaticProps } from "next";
+import React from "react";
 import {
   CoursePageInformationProps,
   CoursePageInformation,
-} from '../../../../../components/CoursePage/CoursePageInformation';
+} from "../../../../../components/CoursePage/CoursePageInformation";
 import {
   CoursePageTabsProps,
   CoursePageTabs,
-} from '../../../../../components/CoursePage/CoursePageTabs';
-
-import faker from 'faker';
-import { polkaPattern } from '@atlascode/core';
-import ProductDefense from '../../../../../components/ProductDefense';
-import NewsLetter from '../../../../../components/Newsletter';
-import Contact from '../../../../../components/Contact';
-import { CourseCollectionType } from 'apps/core/types';
-import axios, { AxiosResponse } from 'axios';
-import convertToSlug from 'apps/core/utility/converToSlug';
-import Head from 'next/head';
+} from "../../../../../components/CoursePage/CoursePageTabs";
+import { polkaPattern } from "@atlascode/core";
+import ProductDefense from "../../../../../components/ProductDefense";
+import NewsLetter from "../../../../../components/Newsletter";
+import axios, { AxiosResponse } from "axios";
+import Head from "next/head";
+import { CourseCollectionType } from "../../../../../types";
+import convertToSlug from "../../../../../utility/converToSlug";
 export interface CourseClass {
   duration: number | string;
   label: string;
@@ -27,32 +24,32 @@ export interface CourseClass {
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CoursePageProps
   extends CoursePageInformationProps,
-    Omit<CoursePageTabsProps, 'activeTab' | 'setActiveTab'> {}
+    Omit<CoursePageTabsProps, "activeTab" | "setActiveTab"> {}
 
 const CoursePage = ({
   classes = [],
-  courseArea = '',
-  courseDuration = '',
-  courseEmec = { imageURL: '', link: '' },
-  courseImage = { url: '', alt: '' },
-  courseLevel = '',
-  courseName = '',
-  coursePrerequisites = '',
-  courseDescription = '',
+  courseArea = "",
+  courseDuration = "",
+  courseEmec = { imageURL: "", link: "" },
+  courseImage = { url: "", alt: "" },
+  courseLevel = "",
+  courseName = "",
+  coursePrerequisites = "",
+  courseDescription = "",
 }: CoursePageProps) => {
   const [activeTab, setActiveTab] = React.useState<number>(0);
 
   return (
     <Box
       sx={{
-        width: '100%',
-        pt: { xs: '15rem', lg: '20rem' },
-        bgcolor: '#F6F9FB',
+        width: "100%",
+        pt: { xs: "15rem", lg: "20rem" },
+        bgcolor: "#F6F9FB",
       }}
     >
       <Head>
         <title>
-          Instituto Educacional Gnosis -{' '}
+          Instituto Educacional Gnosis -{" "}
           {`${courseName} - ${courseLevel} - ${courseArea}`}
         </title>
 
@@ -71,28 +68,28 @@ const CoursePage = ({
 
       <Box
         sx={{
-          width: '100%',
-          height: 'auto',
-          position: 'relative',
-          py: '5rem',
+          width: "100%",
+          height: "auto",
+          position: "relative",
+          py: "5rem",
           zIndex: 1,
         }}
       >
         <Box
           sx={{
-            ...(polkaPattern('#fff', 0.4, 50, 'grey') as Record<
+            ...(polkaPattern("#fff", 0.4, 50, "grey") as Record<
               string,
               unknown
             >),
-            width: '100%',
-            height: '100%',
-            position: 'absolute',
+            width: "100%",
+            height: "100%",
+            position: "absolute",
             zIndex: -1,
           }}
         />
 
         <Container
-          sx={{ py: '5rem', px: { xs: '0rem', lg: 'initial' } }}
+          sx={{ py: "5rem", px: { xs: "0rem", lg: "initial" } }}
           maxWidth="lg"
         >
           <CoursePageTabs
@@ -100,12 +97,12 @@ const CoursePage = ({
             courseEmec={courseEmec}
             coursePrerequisites={coursePrerequisites}
             activeTab={activeTab}
-            setActiveTab={setActiveTab}
+            setActiveTab={setActiveTab as any}
           />
         </Container>
       </Box>
 
-      <Box sx={{ pb: '5rem' }}>
+      <Box sx={{ pb: "5rem" }}>
         <ProductDefense />
       </Box>
       <NewsLetter />
@@ -127,7 +124,7 @@ export const getStaticPaths: CourseStaticPaths = async ({
   locales,
 }) => {
   const courseRequest: AxiosResponse<CourseCollectionType[]> = await axios.get(
-    'https://us-central1-gnosis-webapp.cloudfunctions.net/api/collections/entries/coursesNew'
+    "https://us-central1-gnosis-webapp.cloudfunctions.net/api/collections/entries/coursesNew"
   );
 
   const courseData = courseRequest.data;
@@ -173,7 +170,7 @@ export const getStaticProps: GetStaticProps<CoursePageProps> = async ({
     props: {
       classes: courseByIdRequestData.courseSyllabus.map((value, index) => {
         return {
-          duration: '15hrs',
+          duration: "15hrs",
           label: value,
         };
       }),
@@ -190,7 +187,7 @@ export const getStaticProps: GetStaticProps<CoursePageProps> = async ({
       },
       courseLevel: courseByIdRequestData.courseLevel,
       courseName: courseByIdRequestData.courseName,
-      coursePrerequisites: 'no data',
+      coursePrerequisites: "no data",
     },
   };
 };

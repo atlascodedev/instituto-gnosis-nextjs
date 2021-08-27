@@ -1,5 +1,5 @@
-import { CourseCollectionType } from '../types';
-import convertToSlug from './converToSlug';
+import { CourseCollectionType } from "../types";
+import convertToSlug from "./converToSlug";
 
 const createCourseCollectionWithSlug = (
   courses: CourseCollectionType[]

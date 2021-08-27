@@ -1,14 +1,14 @@
-import { Box, useTheme } from '@material-ui/core';
-import _ from 'lodash';
-import { useRouter } from 'next/dist/client/router';
+import { Box, useTheme } from "@material-ui/core";
+import _ from "lodash";
+import { useRouter } from "next/dist/client/router";
 import {
   isBrowser,
   KotaMenu,
   ModernCleanMenu,
   useScrollbarContext,
-} from '@atlascode/core';
-import React from 'react';
-import { contactDialogStore } from '../GlobalContactDialog/store';
+} from "@atlascode/core";
+import React from "react";
+import { contactDialogStore } from "../GlobalContactDialog/store";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface HeaderProps {}
@@ -18,16 +18,16 @@ const Header = (props: HeaderProps) => {
   const { asPath, push } = useRouter();
 
   const handleScrollIntoView = (callback: (...args: unknown[]) => void) => {
-    if (asPath !== '/') {
-      push('/');
+    if (asPath !== "/") {
+      push("/");
     } else {
       callback();
     }
   };
 
   const handleLogoClick = () => {
-    if (asPath !== '/') {
-      push('/');
+    if (asPath !== "/") {
+      push("/");
     } else {
       scrollTop(1500);
     }
@@ -36,17 +36,17 @@ const Header = (props: HeaderProps) => {
     {
       action: () =>
         handleScrollIntoView(() => {
-          scrollIntoView('#courses_section');
+          scrollIntoView("#courses_section");
           setMenuState(false);
         }),
-      label: 'Cursos',
+      label: "Cursos",
     },
     {
       action: () => {
-        handleScrollIntoView(() => scrollIntoView('#contact_form'));
+        handleScrollIntoView(() => scrollIntoView("#contact_form"));
         setMenuState(false);
       },
-      label: 'Contato',
+      label: "Contato",
     },
   ];
   const [menuState, setMenuState] = React.useState<boolean>(false);
@@ -62,8 +62,8 @@ const Header = (props: HeaderProps) => {
       scrollbarInstance?.addListener((status) => {
         const offset = status.offset;
 
-        mobileHeaderRef.current.style.top = offset.y + 'px';
-        desktopHeaderRef.current.style.top = offset.y + 'px';
+        mobileHeaderRef!.current!.style.top = offset.y + "px";
+        desktopHeaderRef!.current!.style.top = offset.y + "px";
       });
     }
   }, [scrollbarInstance]);
@@ -75,9 +75,9 @@ const Header = (props: HeaderProps) => {
       <Box
         ref={mobileHeaderRef}
         sx={{
-          display: { xs: 'block', lg: 'none' },
-          width: '100%',
-          position: 'fixed',
+          display: { xs: "block", lg: "none" },
+          width: "100%",
+          position: "fixed",
           zIndex: 9999,
         }}
       >
@@ -87,11 +87,11 @@ const Header = (props: HeaderProps) => {
           {...{
             open: menuState,
             ImageCrossFadeProps: {
-              primaryImage: '/images/gnosis-logo-blue.svg',
-              secondaryImage: '/images/gnosis-logo-white.svg',
+              primaryImage: "/images/gnosis-logo-blue.svg",
+              secondaryImage: "/images/gnosis-logo-white.svg",
             },
             KotaBurguerProps: {
-              colorOpen: '#fff',
+              colorOpen: "#fff",
               colorClosed: theme.palette.primary.main,
               onClick: () => setMenuState((prevState) => !prevState),
             },
@@ -105,22 +105,22 @@ const Header = (props: HeaderProps) => {
         ref={desktopHeaderRef}
         sx={{
           display: {
-            xs: 'none',
-            lg: 'block',
-            position: 'fixed',
-            width: '100%',
-            zIndex: 9999,
+            xs: "none",
+            lg: "block",
+            position: "fixed",
+            width: "100%",
+            zIndex: 1000,
           },
         }}
       >
         <ModernCleanMenu
           onLogoClick={handleLogoClick}
           ButtonProps={{
-            children: 'Contate-nos',
-            variant: 'outlined',
+            children: "Contate-nos",
+            variant: "outlined",
             onClick: contactStore,
           }}
-          logo={'/images/gnosis-logo-blue.svg'}
+          logo={"/images/gnosis-logo-blue.svg"}
           items={items.map((value, index) => {
             return { onClick: value.action, label: value.label };
           })}

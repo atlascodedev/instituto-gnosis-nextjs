@@ -18,7 +18,7 @@ RUN mkdir app && cp -a /tmp/node_modules /app
 
 # --- Build node --- #
 COPY . /app
-RUN cd /app && pnpx nx run core:build
+RUN cd /app && pnpm run build
 
 
 
@@ -26,7 +26,7 @@ RUN cd /app && pnpx nx run core:build
 # --- Server connection node --- #
 ENV PORT=8080
 EXPOSE 8080
-WORKDIR /app/dist/apps/core
+# WORKDIR /app/dist/apps/core
 
 CMD ["npm", "start", "--", "--port", "8080"]
 

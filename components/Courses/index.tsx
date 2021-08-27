@@ -1,52 +1,56 @@
-import { polkaPattern, TabPanel } from '@atlascode/core';
-import { Box, Tab, Tabs } from '@material-ui/core';
-import React from 'react';
+import { polkaPattern, TabPanel } from "@atlascode/core";
+import { Box, Tab, Tabs } from "@material-ui/core";
+import React from "react";
 import OfferSlider, {
   OfferSliderProps,
-} from '../Sliders/offer-slider/OfferSlider';
-import { motion } from 'framer-motion';
+} from "../Sliders/offer-slider/OfferSlider";
+import { motion } from "framer-motion";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CoursesProps {
-  coursesPos?: OfferSliderProps['items'];
-  coursesExt?: OfferSliderProps['items'];
-  coursesMulti?: OfferSliderProps['items'];
+  coursesPos?: OfferSliderProps["items"];
+  coursesExt?: OfferSliderProps["items"];
+  coursesMulti?: OfferSliderProps["items"];
 }
 
-const Courses = ({ coursesExt, coursesMulti, coursesPos }: CoursesProps) => {
+const Courses = ({
+  coursesExt = [],
+  coursesMulti = [],
+  coursesPos = [],
+}: CoursesProps) => {
   const [activeTab, setActiveTab] = React.useState(0);
 
   return (
     <Box
       sx={{
-        width: '100%',
-        position: 'relative',
-        pb: { xs: '5rem', lg: '15rem' },
+        width: "100%",
+        position: "relative",
+        pb: { xs: "5rem", lg: "15rem" },
       }}
     >
       <Box
         sx={{
-          ...(polkaPattern('#fff', 0.4, 50, 'grey') as Record<string, unknown>),
-          width: '100%',
-          height: '100%',
-          position: 'absolute',
+          ...(polkaPattern("#fff", 0.4, 50, "grey") as Record<string, unknown>),
+          width: "100%",
+          height: "100%",
+          position: "absolute",
           zIndex: -1,
         }}
       />
 
       <Box
         sx={{
-          display: 'flex',
-          justifyContent: 'center',
+          display: "flex",
+          justifyContent: "center",
         }}
       >
         <Box
           sx={{
-            maxWidth: '90%',
-            width: { xs: '90%', md: '60%' },
+            maxWidth: "90%",
+            width: { xs: "90%", md: "60%" },
             backgroundColor: (theme) => theme.palette.primary.main,
-            borderRadius: '4px',
-            marginTop: '4rem',
+            borderRadius: "4px",
+            marginTop: "4rem",
           }}
         >
           <Tabs
@@ -66,7 +70,7 @@ const Courses = ({ coursesExt, coursesMulti, coursesPos }: CoursesProps) => {
 
       <Box
         sx={{
-          py: '3rem',
+          py: "3rem",
         }}
       >
         <TabPanel index={0} value={activeTab}>
@@ -75,11 +79,11 @@ const Courses = ({ coursesExt, coursesMulti, coursesPos }: CoursesProps) => {
           ) : (
             <Box
               sx={{
-                display: 'flex',
-                width: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
-                py: '5rem',
+                display: "flex",
+                width: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                py: "5rem",
               }}
             >
               <motion.div
@@ -95,11 +99,11 @@ const Courses = ({ coursesExt, coursesMulti, coursesPos }: CoursesProps) => {
               >
                 <Box
                   sx={{
-                    fontSize: { xs: '20px', lg: '32px' },
+                    fontSize: { xs: "20px", lg: "32px" },
                     fontWeight: 700,
                     color: (theme) => theme.palette.primary.main,
-                    maxWidth: '50ch',
-                    textAlign: 'center',
+                    maxWidth: "50ch",
+                    textAlign: "center",
                   }}
                 >
                   Nenhum curso de pós-graduação encontrado. Inscreva-se na nossa
@@ -116,11 +120,11 @@ const Courses = ({ coursesExt, coursesMulti, coursesPos }: CoursesProps) => {
           ) : (
             <Box
               sx={{
-                display: 'flex',
-                width: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
-                py: '5rem',
+                display: "flex",
+                width: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                py: "5rem",
               }}
             >
               <motion.div
@@ -136,9 +140,9 @@ const Courses = ({ coursesExt, coursesMulti, coursesPos }: CoursesProps) => {
               >
                 <Box
                   sx={{
-                    maxWidth: '50ch',
-                    textAlign: 'center',
-                    fontSize: { xs: '20px', lg: '32px' },
+                    maxWidth: "50ch",
+                    textAlign: "center",
+                    fontSize: { xs: "20px", lg: "32px" },
                     fontWeight: 700,
                     color: (theme) => theme.palette.primary.main,
                   }}
@@ -157,11 +161,11 @@ const Courses = ({ coursesExt, coursesMulti, coursesPos }: CoursesProps) => {
           ) : (
             <Box
               sx={{
-                display: 'flex',
-                width: '100%',
-                justifyContent: 'center',
-                alignItems: 'center',
-                py: '5rem',
+                display: "flex",
+                width: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                py: "5rem",
               }}
             >
               <motion.div
@@ -177,9 +181,9 @@ const Courses = ({ coursesExt, coursesMulti, coursesPos }: CoursesProps) => {
               >
                 <Box
                   sx={{
-                    maxWidth: '50ch',
-                    textAlign: 'center',
-                    fontSize: { xs: '20px', lg: '32px' },
+                    maxWidth: "50ch",
+                    textAlign: "center",
+                    fontSize: { xs: "20px", lg: "32px" },
                     fontWeight: 700,
                     color: (theme) => theme.palette.primary.main,
                   }}

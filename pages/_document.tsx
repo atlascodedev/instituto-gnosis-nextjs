@@ -1,17 +1,17 @@
-import Document, { Head, Html, Main, NextScript } from 'next/document';
-import createEmotionServer from '@emotion/server/create-instance';
-import createCache from '@emotion/cache';
-import React from 'react';
+import Document, { Head, Html, Main, NextScript } from "next/document";
+import createEmotionServer from "@emotion/server/create-instance";
+import createCache from "@emotion/cache";
+import React from "react";
 
 class CustomDocument extends Document {
-  static async getInitialProps(ctx) {
+  static async getInitialProps(ctx: any) {
     const initialProps = await Document.getInitialProps(ctx);
     return { ...initialProps };
   }
 
   render() {
     return (
-      <Html style={{ fontSize: '62.5%' }} lang="pt-br">
+      <Html style={{ fontSize: "62.5%" }} lang="pt-br">
         <Head>
           <link
             rel="apple-touch-icon"
@@ -70,12 +70,12 @@ CustomDocument.getInitialProps = async (ctx) => {
 
   // You can consider sharing the same emotion cache between all the SSR requests to speed up performance.
   // However, be aware that it can have global side effects.
-  const cache = createCache({ key: 'css' });
+  const cache = createCache({ key: "css" });
   const { extractCriticalToChunks } = createEmotionServer(cache);
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: (App: any) => (props) =>
+      enhanceApp: (App: any) => (props: any) =>
         <App emotionCache={cache} {...props} />,
     });
 
@@ -85,7 +85,7 @@ CustomDocument.getInitialProps = async (ctx) => {
   const emotionStyles = extractCriticalToChunks(initialProps.html);
   const emotionStyleTags = emotionStyles.styles.map((style) => (
     <style
-      data-emotion={`${style.key} ${style.ids.join(' ')}`}
+      data-emotion={`${style.key} ${style.ids.join(" ")}`}
       key={style.key}
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: style.css }}

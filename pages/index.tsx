@@ -1,26 +1,24 @@
-import { useScrollbarContext } from '@atlascode/core';
-import axios, { AxiosResponse } from 'axios';
-import { GetStaticProps } from 'next';
-import BlogPreview from '../components/BlogPreview';
-import Courses from '../components/Courses';
-import HeroScreen from '../components/HeroScreen';
-import GnosisLoader from '../components/Loader';
-import Newsletter from '../components/Newsletter';
-import ProductDefense from '../components/ProductDefense';
-import Testimonials from '../components/Testimonials';
+import { useScrollbarContext } from "@atlascode/core";
+import axios, { AxiosResponse } from "axios";
+import { GetStaticProps } from "next";
+import Courses from "../components/Courses";
+import HeroScreen from "../components/HeroScreen";
+import GnosisLoader from "../components/Loader";
+import Newsletter from "../components/Newsletter";
+import ProductDefense from "../components/ProductDefense";
+import Testimonials from "../components/Testimonials";
 import {
   BlogCollectionType,
   CourseCollectionType,
   TestimonialCollectionType,
-} from '../types';
-import createCourseCollectionWithSlug from '../utility/courseCollectionSlug';
-import React from 'react';
-import Head from 'next/head';
-import { FaGraduationCap, FaSchool } from 'react-icons/fa';
-import { useLocalStorage } from 'react-use';
+} from "../types";
+import createCourseCollectionWithSlug from "../utility/courseCollectionSlug";
+import React from "react";
+import Head from "next/head";
+import { FaGraduationCap, FaSchool } from "react-icons/fa";
 
-const mockExt = [];
-const mockMulti = [];
+const mockExt = [] as any[];
+const mockMulti = [] as any[];
 
 export interface IndexPageProps {
   courses: CourseCollectionType[];
@@ -28,7 +26,7 @@ export interface IndexPageProps {
   testimonials?: TestimonialCollectionType[];
 }
 
-const IS_INITIAL_VISIT = 'INITIAL_VISIT';
+const IS_INITIAL_VISIT = "INITIAL_VISIT";
 
 const setIfVisited = (
   positiveCallback: (...args: unknown[]) => void,
@@ -38,7 +36,7 @@ const setIfVisited = (
     positiveCallback();
   } else {
     negativeCallback();
-    localStorage.setItem(IS_INITIAL_VISIT, 'true');
+    localStorage.setItem(IS_INITIAL_VISIT, "true");
   }
 };
 
@@ -50,7 +48,7 @@ export function Index({
   const [isInitialVisit, setIsInitialVisit] = React.useState(true);
 
   React.useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       setIfVisited(
         () => {
           setIsInitialVisit(false);
@@ -95,7 +93,7 @@ export function Index({
 
       <HeroScreen
         ctaLabel="Ver cursos"
-        ctaCallback={() => scrollIntoView('#courses_section')}
+        ctaCallback={() => scrollIntoView("#courses_section")}
       />
       <ProductDefense />
       <div id="courses_section">
@@ -141,7 +139,7 @@ export function Index({
           <Testimonials
             items={testimonials.map((value, index) => {
               return {
-                color: 'primary',
+                color: "primary",
                 identification: value.testimonialLocation,
                 name: value.testimonialName,
                 testimonial: value.testimonialText,
@@ -164,14 +162,14 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async ({
   params,
 }) => {
   const courseRequest: AxiosResponse<CourseCollectionType[]> = await axios.get(
-    'https://us-central1-gnosis-webapp.cloudfunctions.net/api/collections/entries/coursesNew'
+    "https://us-central1-gnosis-webapp.cloudfunctions.net/api/collections/entries/coursesNew"
   );
   const blogRequest: AxiosResponse<BlogCollectionType[]> = await axios.get(
-    'https://us-central1-gnosis-webapp.cloudfunctions.net/api/collections/entries/gnosisBlog'
+    "https://us-central1-gnosis-webapp.cloudfunctions.net/api/collections/entries/gnosisBlog"
   );
   const testimonialRequest: AxiosResponse<TestimonialCollectionType[]> =
     await axios.get(
-      'https://us-central1-gnosis-webapp.cloudfunctions.net/api/collections/entries/testimonials'
+      "https://us-central1-gnosis-webapp.cloudfunctions.net/api/collections/entries/testimonials"
     );
 
   const courseData = courseRequest.data;

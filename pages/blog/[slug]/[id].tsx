@@ -1,21 +1,21 @@
-import { BlogLayoutV1, BlogLayoutV1Props } from '@atlascode/core';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import React from 'react';
-import axios, { AxiosResponse } from 'axios';
-import { BlogCollectionType } from 'apps/core/types';
+import { BlogLayoutV1, BlogLayoutV1Props } from "@atlascode/core";
+import { GetStaticPaths, GetStaticProps } from "next";
+import React from "react";
+import axios, { AxiosResponse } from "axios";
+import { BlogCollectionType } from "../../../types";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface BlogPageProps extends BlogLayoutV1Props {}
 
 const BlogPage = ({
   readingTime = true,
-  content = '',
+  content = "",
   date = new Date().toDateString(),
-  featuredImage = '',
+  featuredImage = "",
   latestPosts = [],
   socials = {},
   tags = [],
-  title = 'Placeholder title',
+  title = "Placeholder title",
 }: BlogPageProps) => {
   return (
     <BlogLayoutV1
@@ -40,7 +40,7 @@ export const getStaticPaths: BlogStaticPaths = async ({
   locales,
 }) => {
   const blogRequest: AxiosResponse<BlogCollectionType[]> = await axios.get(
-    'https://us-central1-gnosis-webapp.cloudfunctions.net/api/collections/entries/gnosisBlog'
+    "https://us-central1-gnosis-webapp.cloudfunctions.net/api/collections/entries/gnosisBlog"
   );
 
   const blogData = blogRequest.data;
@@ -62,7 +62,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async ({
   defaultLocale,
   locale,
   locales,
-  params,
+  params = {},
   preview,
   previewData,
 }) => {
@@ -74,11 +74,11 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async ({
 
   return {
     props: {
-      title: '',
+      title: "",
       readingTime: true,
-      content: '',
+      content: "",
       date: new Date().toDateString(),
-      featuredImage: '',
+      featuredImage: "",
       latestPosts: [],
       socials: {},
       tags: [],
