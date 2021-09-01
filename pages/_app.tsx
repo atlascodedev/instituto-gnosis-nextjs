@@ -11,6 +11,7 @@ import createEmotionCache from "@emotion/cache";
 import GlobalContactDialog from "../components/GlobalContactDialog/GlobalContactDialog";
 import CourseDialog from "../components/CourseDialog/CourseDialog";
 import GlobalSnack from "../components/Alerts";
+import "../public/css/index.css";
 
 export default function MyApp(
   props: AppProps & { emotionCache?: EmotionCache }

@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import submitContactDialog from "../GlobalContactDialog/helpers";
 import { alertStore } from "../Alerts/store";
 import useContactForm from "../../hooks/useContactForm";
+import Image from "next/image";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ContactProps extends MinimalFormPicOverBlobProps {}
@@ -51,16 +52,23 @@ const PicComponent = () => {
   return (
     <Box
       sx={{
-        pt: "125px",
         width: "100%",
         height: "100%",
-        objectFit: { xs: "cover", lg: "contain" },
         bottom: 0,
         position: "absolute",
+
+        img: {
+          pt: { xs: "150px !important" },
+        },
       }}
-      component="img"
-      src="/images/young-doc-female-2.png"
-    ></Box>
+    >
+      <Image
+        src="/images/young-doc-female-2.png"
+        layout="fill"
+        placeholder="blur"
+        objectFit="contain"
+      />
+    </Box>
   );
 };
 

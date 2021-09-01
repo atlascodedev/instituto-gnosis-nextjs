@@ -15,7 +15,6 @@ RUN cd /tmp && pnpm install
 RUN mkdir app && cp -a /tmp/node_modules /app
 
 
-
 # --- Build node --- #
 COPY . /app
 RUN cd /app && pnpm run build
@@ -29,6 +28,3 @@ EXPOSE 8080
 WORKDIR /app
 
 CMD ["npm", "start", "--", "--port", "8080"]
-
-
-

@@ -4,6 +4,7 @@ import React from "react";
 import axios from "axios";
 import { alertStore } from "../Alerts/store";
 import { FORM_API_ROUTES } from "../../constants";
+import Image from "next/image";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface NewsletterProps {}
@@ -65,13 +66,17 @@ const Newsletter = (props: NewsletterProps) => {
               height: { xs: "100%", lg: "125%" },
               bottom: 0,
               left: 0,
-              pt: { xs: "23rem", md: "0px" },
               position: "absolute",
+
+              img: {
+                pt: { xs: "23rem !important", md: "0px !important" },
+              },
             }}
           >
-            <Box
-              sx={{ width: "100%", height: "100%", objectFit: "contain" }}
-              component="img"
+            <Image
+              className="newsletter-doc-img"
+              layout="fill"
+              objectFit="contain"
               src="/images/doc-img-2.png"
             />
           </Box>

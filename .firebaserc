@@ -4,7 +4,7 @@
     "gnosis-webapp": {
       "hosting": {
         "micro": [
-          "gnosis-micro"
+          "gnosis-webapp"
         ]
       }
     }
