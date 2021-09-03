@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FORM_API_ROUTES } from "../../constants";
+import { FORM_API_ROUTES, EMAIL_API_ROUTES } from "../../constants";
 
 const submitContactDialog = async (
   name: string,
@@ -15,12 +15,12 @@ const submitContactDialog = async (
       phone: phone,
     });
 
-    // await axios.post(EMAIL_API_ROUTES.contact, {
-    //   name: name,
-    //   email: email,
-    //   message: message,
-    //   phone: phone,
-    // });
+    await axios.post(EMAIL_API_ROUTES.contact, {
+      name: name,
+      email: email,
+      message: message,
+      phone: phone,
+    });
   } catch (error) {
     console.log(error);
   }
