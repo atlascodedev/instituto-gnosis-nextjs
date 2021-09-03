@@ -61,8 +61,8 @@ const DesktopPicture = ({ src = "/images/hero-doc.png" }: { src?: string }) => {
           src={src}
           alt="Médicos sorrindo "
           layout="fill"
-          placeholder="blur"
           objectFit="cover"
+          loading="eager"
         />
       </Box>
     </Box>
@@ -83,7 +83,7 @@ const MobilePicture = ({
         position: "absolute",
       }}
     >
-      <Image src={src} layout="fill" placeholder="blur" />
+      <Image loading="eager" src={src} layout="fill" />
     </Box>
   );
 };

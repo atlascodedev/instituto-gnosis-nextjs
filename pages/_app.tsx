@@ -12,6 +12,11 @@ import GlobalContactDialog from "../components/GlobalContactDialog/GlobalContact
 import CourseDialog from "../components/CourseDialog/CourseDialog";
 import GlobalSnack from "../components/Alerts";
 import "../public/css/index.css";
+import TagManager, { DataLayerArgs, TagManagerArgs } from "react-gtm-module";
+
+const tgmArgs: TagManagerArgs = {
+  gtmId: "GTM-KR46SPQ",
+};
 
 export default function MyApp(
   props: AppProps & { emotionCache?: EmotionCache }
@@ -23,6 +28,10 @@ export default function MyApp(
     emotionCache = clientSideCache,
     router,
   } = props;
+
+  React.useEffect(() => {
+    TagManager.initialize(tgmArgs);
+  }, []);
 
   return (
     <CacheProvider value={emotionCache}>

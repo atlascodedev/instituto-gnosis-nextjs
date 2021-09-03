@@ -63,9 +63,10 @@ const PicComponent = () => {
       }}
     >
       <Image
+        lazyBoundary="800px"
+        loading="lazy"
         src="/images/young-doc-female-2.png"
         layout="fill"
-        placeholder="blur"
         objectFit="contain"
       />
     </Box>

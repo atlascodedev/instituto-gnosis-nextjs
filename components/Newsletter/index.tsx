@@ -74,6 +74,7 @@ const Newsletter = (props: NewsletterProps) => {
             }}
           >
             <Image
+              loading="eager"
               className="newsletter-doc-img"
               layout="fill"
               objectFit="contain"
