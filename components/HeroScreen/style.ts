@@ -62,7 +62,9 @@ const styles = {
   } as SxProps<Theme>,
 
   ctaButton: {
-    color: (theme: Theme) => theme.palette.secondary.dark,
+    color: (theme: Theme) => theme.palette.secondary.light,
+    p: 1.5,
+    fontWeight: 700,
   } as SxProps<Theme>,
 } as const;
 
