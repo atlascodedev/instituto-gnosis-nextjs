@@ -35,8 +35,6 @@ const getCourseByLevel = (courses: CourseCollectionType[]) => {
   });
 
   const coursePos = courses.filter((value, index) => {
-    console.log(convertToSlug(value.courseLevel).toUpperCase(), posCategory);
-
     return convertToSlug(value.courseLevel).toUpperCase() === posCategory;
   });
 

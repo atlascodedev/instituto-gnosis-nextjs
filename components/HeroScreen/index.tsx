@@ -10,83 +10,23 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import Image from "next/image";
+import styles from "./style";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface HeroScreenProps
   extends Omit<HeroScreenWhiteDotsProps, "desktopPicture" | "picture"> {}
 
 const HeroScreen = (props: HeroScreenProps) => {
-  return (
-    <HeroScreenWhiteDots
-      {...props}
-      desktopPicture={<DesktopPicture />}
-      picture={<MobilePicture />}
-    />
-  );
+  return <HeroScreenWhiteDots {...props} />;
 };
 
 export default HeroScreen;
 
-const DesktopPicture = ({ src = "/images/hero-doc.png" }: { src?: string }) => {
-  return (
-    <Box
-      sx={{
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-        position: "absolute",
-      }}
-    >
-      <Box
-        sx={{
-          width: "100%",
-          height: "100%",
-          pt: "200px",
-          position: "relative",
-
-          img: {
-            paddingTop: "150px !important",
-          },
-        }}
-      >
-        <Image
-          className="hero-img-desktop"
-          src={src}
-          alt="Médicos sorrindo "
-          layout="fill"
-          objectFit="cover"
-          loading="eager"
-        />
-      </Box>
-    </Box>
-  );
-};
-
-const MobilePicture = ({
-  src = "/images/young-doc-female.png",
-}: {
-  src?: string;
-}) => {
-  return (
-    <Box
-      sx={{
-        width: "100%",
-        height: "100%",
-        objectFit: ["cover", "contain", null, null, null],
-        position: "absolute",
-      }}
-    >
-      <Image loading="eager" src={src} layout="fill" />
-    </Box>
-  );
-};
 /* eslint-disable-next-line */
 export interface HeroScreenWhiteDotsProps {
   patternColor?: string;
   patternSize?: string;
   backgroundColor?: string;
-  picture?: JSX.Element;
-  desktopPicture?: JSX.Element;
   blobColor?: "primary" | "secondary";
   buttonVariant?: ButtonProps["variant"];
   ctaCallback?: (...args: unknown[]) => void;
@@ -98,8 +38,6 @@ export function HeroScreenWhiteDots({
   patternSize = "1px",
   backgroundColor = "#fff",
   blobColor = "secondary",
-  desktopPicture,
-  picture,
   buttonVariant = "contained",
   ctaCallback,
   ctaLabel = "Call to action",
@@ -117,7 +55,7 @@ export function HeroScreenWhiteDots({
   return (
     <Box
       sx={{
-        height: "100vh",
+        height: "auto",
         backgroundColor: "#fff",
         backgroundImage: `radial-gradient(${patternColor} ${patternSize}, ${backgroundColor} ${patternSize})`,
         backgroundSize: "10px 10px",
@@ -125,93 +63,67 @@ export function HeroScreenWhiteDots({
         overflow: "hidden",
       }}
     >
-      <Container maxWidth="xl">
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", lg: "40% 60%" },
-            gridTemplateRows: { xs: "50% 50%", lg: "none" },
-            alignContent: "stretch",
-            width: "100%",
-            height: "100%",
-            px: { xs: "1em", sm: "2em", lg: "7em" },
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: { xs: "flex-start" },
-              justifyContent: { xs: "flex-end", sm: "center", lg: "center" },
-              gap: { xs: "30px", md: "30px" },
-            }}
-          >
-            <Typography
-              variant="h1"
-              sx={{
-                fontSize: { xs: "4vh", lg: "6vh" },
-                fontWeight: "900",
-                color: (theme) => theme.palette.primary.main,
-              }}
-            >
-              O futuro da sua carreira está em suas mãos.
-            </Typography>
+      <Container maxWidth="lg">
+        <Box sx={styles.inner}>
+          <Box sx={styles.ctaContainer}>
+            <Box sx={styles.ctaInnerContainer}>
+              <Typography variant="h1" sx={styles.mainText}>
+                O futuro da sua carreira está em suas mãos.
+              </Typography>
 
-            <Typography
-              variant="h2"
-              sx={{
-                fontSize: ["2vh", null, null, "2.5vh", "2.75vh"],
-                color: (theme) => theme.palette.grey[600],
-              }}
-            >
-              Conheça os nossos cursos de pós-graduação e extensão em Medicina à
-              distância.
-            </Typography>
+              <Typography variant="h4" sx={styles.auxText}>
+                Conheça os nossos cursos de pós-graduação e extensão em Medicina
+                à distância.
+              </Typography>
 
-            <Button
-              onClick={ctaCallback}
-              sx={{
-                textTransform: "inherit",
-                fontSize: { xs: "1rem", md: "1.3", lg: "1.5rem" },
-              }}
-              variant={buttonVariant}
-              color="primary"
-              size="large"
-            >
-              {ctaLabel}
-            </Button>
+              <Button
+                onClick={ctaCallback}
+                sx={styles.ctaButton}
+                variant="contained"
+                color="primary"
+              >
+                Conheça os cursos
+              </Button>
+            </Box>
           </Box>
 
-          <Box
-            component="figure"
-            sx={{
-              display: "flex",
-              position: "relative",
-              justifyContent: "center",
-              transform: "translate3D(0px, 0px, 0px)",
-              m: "0px",
-              p: { xs: "0px", md: "10px 0px 0px 10px" },
-            }}
-          >
+          <Box sx={styles.picContainer} component="figure">
             <Box
-              sx={{
-                width: "100%",
-                position: "absolute",
-                zIndex: -1,
-                height: "100%",
-                filter: blobFilter,
-              }}
               component="img"
-              src={"/images/blob.svg"}
-            ></Box>
-
-            <Box
               sx={{
+                objectFit: "contain",
                 width: "100%",
                 height: "100%",
+                position: "absolute",
               }}
-            >
-              {isDesktop && desktopPicture ? desktopPicture : picture}
+              src={"/images/blob.svg"}
+            />
+            <Image
+              width={600}
+              height={600}
+              src={"/images/young-doc-female.png"}
+              loading="eager"
+            />
+          </Box>
+
+          <Box sx={styles.desktopPicture} component="figure">
+            <Box
+              component="img"
+              sx={{
+                objectFit: "contain",
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+              }}
+              src={"/images/blob.svg"}
+            />
+            <Box sx={{ width: "500px", height: "500px" }}>
+              <Image
+                loading="eager"
+                src="/images/hero-doc.png"
+                layout="fill"
+                objectFit="cover"
+              />
             </Box>
           </Box>
         </Box>
