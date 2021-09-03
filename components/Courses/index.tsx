@@ -1,5 +1,5 @@
 import { polkaPattern, TabPanel } from "@atlascode/core";
-import { Box, Tab, Tabs } from "@material-ui/core";
+import { Box, Tab, Tabs, Container } from "@material-ui/core";
 import React from "react";
 import OfferSlider, {
   OfferSliderProps,
@@ -68,134 +68,138 @@ const Courses = ({
         </Box>
       </Box>
 
-      <Box
-        sx={{
-          py: "3rem",
-        }}
-      >
-        <TabPanel index={0} value={activeTab}>
-          {coursesPos.length > 0 ? (
-            <OfferSlider items={coursesPos} />
-          ) : (
-            <Box
-              sx={{
-                display: "flex",
-                width: "100%",
-                justifyContent: "center",
-                alignItems: "center",
-                py: "5rem",
-              }}
-            >
-              <motion.div
-                animate="visible"
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                  },
-                  visible: {
-                    opacity: 1,
-                  },
+      <Container maxWidth="xl">
+        <Box
+          sx={{
+            py: "3rem",
+          }}
+        >
+          <TabPanel index={0} value={activeTab}>
+            {coursesPos.length > 0 ? (
+              <OfferSlider items={coursesPos} />
+            ) : (
+              <Box
+                sx={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  py: "5rem",
                 }}
               >
-                <Box
-                  sx={{
-                    fontSize: { xs: "20px", lg: "32px" },
-                    fontWeight: 700,
-                    color: (theme) => theme.palette.primary.main,
-                    maxWidth: "50ch",
-                    textAlign: "center",
+                <motion.div
+                  animate="visible"
+                  variants={{
+                    hidden: {
+                      opacity: 0,
+                    },
+                    visible: {
+                      opacity: 1,
+                    },
                   }}
                 >
-                  Nenhum curso de pós-graduação encontrado. Inscreva-se na nossa
-                  newsletter e receba notícias sobre lançamentos de cursos.
-                </Box>
-              </motion.div>
-            </Box>
-          )}
-        </TabPanel>
+                  <Box
+                    sx={{
+                      fontSize: { xs: "20px", lg: "32px" },
+                      fontWeight: 700,
+                      color: (theme) => theme.palette.primary.main,
+                      maxWidth: "50ch",
+                      textAlign: "center",
+                    }}
+                  >
+                    Nenhum curso de pós-graduação encontrado. Inscreva-se na
+                    nossa newsletter e receba notícias sobre lançamentos de
+                    cursos.
+                  </Box>
+                </motion.div>
+              </Box>
+            )}
+          </TabPanel>
 
-        <TabPanel index={1} value={activeTab}>
-          {coursesExt.length > 0 ? (
-            <OfferSlider items={coursesExt} />
-          ) : (
-            <Box
-              sx={{
-                display: "flex",
-                width: "100%",
-                justifyContent: "center",
-                alignItems: "center",
-                py: "5rem",
-              }}
-            >
-              <motion.div
-                animate="visible"
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                  },
-                  visible: {
-                    opacity: 1,
-                  },
+          <TabPanel index={1} value={activeTab}>
+            {coursesExt.length > 0 ? (
+              <OfferSlider items={coursesExt} />
+            ) : (
+              <Box
+                sx={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  py: "5rem",
                 }}
               >
-                <Box
-                  sx={{
-                    maxWidth: "50ch",
-                    textAlign: "center",
-                    fontSize: { xs: "20px", lg: "32px" },
-                    fontWeight: 700,
-                    color: (theme) => theme.palette.primary.main,
+                <motion.div
+                  animate="visible"
+                  variants={{
+                    hidden: {
+                      opacity: 0,
+                    },
+                    visible: {
+                      opacity: 1,
+                    },
                   }}
                 >
-                  Nenhum curso de extensão encontrado. Inscreva-se na nossa
-                  newsletter e receba notícias sobre lançamentos de cursos.
-                </Box>
-              </motion.div>
-            </Box>
-          )}
-        </TabPanel>
+                  <Box
+                    sx={{
+                      maxWidth: "50ch",
+                      textAlign: "center",
+                      fontSize: { xs: "20px", lg: "32px" },
+                      fontWeight: 700,
+                      color: (theme) => theme.palette.primary.main,
+                    }}
+                  >
+                    Nenhum curso de extensão encontrado. Inscreva-se na nossa
+                    newsletter e receba notícias sobre lançamentos de cursos.
+                  </Box>
+                </motion.div>
+              </Box>
+            )}
+          </TabPanel>
 
-        <TabPanel index={2} value={activeTab}>
-          {coursesMulti.length > 0 ? (
-            <OfferSlider items={coursesMulti} />
-          ) : (
-            <Box
-              sx={{
-                display: "flex",
-                width: "100%",
-                justifyContent: "center",
-                alignItems: "center",
-                py: "5rem",
-              }}
-            >
-              <motion.div
-                animate="visible"
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                  },
-                  visible: {
-                    opacity: 1,
-                  },
+          <TabPanel index={2} value={activeTab}>
+            {coursesMulti.length > 0 ? (
+              <OfferSlider items={coursesMulti} />
+            ) : (
+              <Box
+                sx={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  py: "5rem",
                 }}
               >
-                <Box
-                  sx={{
-                    maxWidth: "50ch",
-                    textAlign: "center",
-                    fontSize: { xs: "20px", lg: "32px" },
-                    fontWeight: 700,
-                    color: (theme) => theme.palette.primary.main,
+                <motion.div
+                  animate="visible"
+                  variants={{
+                    hidden: {
+                      opacity: 0,
+                    },
+                    visible: {
+                      opacity: 1,
+                    },
                   }}
                 >
-                  Nenhum curso multidisciplinar encontrado. Inscreva-se na nossa
-                  newsletter e receba notícias sobre lançamentos de cursos.
-                </Box>
-              </motion.div>
-            </Box>
-          )}
-        </TabPanel>
-      </Box>
+                  <Box
+                    sx={{
+                      maxWidth: "50ch",
+                      textAlign: "center",
+                      fontSize: { xs: "20px", lg: "32px" },
+                      fontWeight: 700,
+                      color: (theme) => theme.palette.primary.main,
+                    }}
+                  >
+                    Nenhum curso multidisciplinar encontrado. Inscreva-se na
+                    nossa newsletter e receba notícias sobre lançamentos de
+                    cursos.
+                  </Box>
+                </motion.div>
+              </Box>
+            )}
+          </TabPanel>
+        </Box>
+      </Container>
     </Box>
   );
 };

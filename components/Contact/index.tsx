@@ -3,7 +3,7 @@ import {
   MinimalContactFormProps,
   polkaPattern,
 } from "@atlascode/core";
-import { Box, useTheme, useMediaQuery } from "@material-ui/core";
+import { Box, useTheme, useMediaQuery, Container } from "@material-ui/core";
 import React from "react";
 import { contactDialogStore } from "../GlobalContactDialog/store";
 import MinimalContactForm from "../minimal-contact-form/MinimalContactForm";
@@ -18,31 +18,33 @@ export interface ContactProps extends MinimalFormPicOverBlobProps {}
 
 const Contact = (props: ContactProps) => {
   return (
-    <Box
-      sx={{
-        width: "100%",
-        height: "100%",
-        position: "relative",
-        px: { xs: "0rem", lg: "4rem" },
-      }}
-    >
+    <Container maxWidth="xl">
       <Box
         sx={{
           width: "100%",
           height: "100%",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          zIndex: -1,
-          ...(polkaPattern("#fff", 0.1, 40, "#6d6d6d") as Record<
-            string,
-            unknown
-          >),
+          position: "relative",
+          px: { xs: "0rem", lg: "4rem" },
         }}
-      />
+      >
+        <Box
+          sx={{
+            width: "100%",
+            height: "100%",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            zIndex: -1,
+            ...(polkaPattern("#fff", 0.1, 40, "#6d6d6d") as Record<
+              string,
+              unknown
+            >),
+          }}
+        />
 
-      <MinimalFormPicOverBlob picture={<PicComponent />} {...props} />
-    </Box>
+        <MinimalFormPicOverBlob picture={<PicComponent />} {...props} />
+      </Box>
+    </Container>
   );
 };
 
@@ -55,10 +57,12 @@ const PicComponent = () => {
         width: "100%",
         height: "100%",
         bottom: 0,
+        left: 0,
         position: "absolute",
+        display: { xs: "none", lg: "block" },
 
         img: {
-          pt: { xs: "150px !important" },
+          pt: { xs: "75px !important" },
         },
       }}
     >
@@ -133,13 +137,14 @@ export function MinimalFormPicOverBlob({
         width: "100%",
         height: { xs: "auto", lg: "80vh" },
         overflow: "hidden",
+        py: { xs: 5, lg: "initial" },
       }}
     >
       <Box
         sx={{
           display: "grid",
           gridTemplateColumns: { xs: "1fr", lg: "40% 60%" },
-          gridTemplateRows: { xs: "1fr 1fr", lg: "none" },
+          gridTemplateRows: { xs: "auto", lg: "none" },
           gridAutoFlow: "row",
           height: "100%",
         }}
@@ -193,7 +198,7 @@ export function MinimalFormPicOverBlob({
         <Box
           component="figure"
           sx={{
-            display: "flex",
+            display: { xs: "none", lg: "flex" },
             position: "relative",
             justifyContent: "center",
             transform: "translate3D(0px, 0px, 0px)",
