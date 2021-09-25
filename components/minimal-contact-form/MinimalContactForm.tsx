@@ -4,7 +4,8 @@ import {
   TextField,
   ButtonProps,
   BoxProps,
-} from '@material-ui/core';
+} from "@material-ui/core";
+import NumberFormat from "react-number-format";
 
 export type FormInputProps = {
   label: string;
@@ -34,39 +35,39 @@ export interface MinimalContactFormProps {
 
 export function MinimalContactForm({
   emailInputProps = {
-    label: 'Email',
-    placeholder: 'Ex. joao.vitor@gmail.com',
+    label: "Email",
+    placeholder: "Ex. joao.vitor@gmail.com",
   },
   messageInputProps = {
-    label: 'Mensagem',
-    placeholder: 'Ex: Tenho dúvidas a respeito de...',
+    label: "Mensagem",
+    placeholder: "Ex: Tenho dúvidas a respeito de...",
   },
   nameInputProps = {
-    label: 'Nome completo',
-    placeholder: 'Ex. João Vitor',
+    label: "Nome completo",
+    placeholder: "Ex. João Vitor",
   },
   phoneInputProps = {
-    label: 'Número',
-    placeholder: 'Ex: (00) 0-0000-0000',
+    label: "Número",
+    placeholder: "Ex: (00) 0-0000-0000",
   },
   buttonProps = {
-    color: 'primary',
-    label: 'Enviar',
+    color: "primary",
+    label: "Enviar",
   },
   onSubmit,
   rightAlign,
   title,
 }: MinimalContactFormProps) {
   return (
-    <Box sx={{ width: '100%', height: 'auto' }}>
+    <Box sx={{ width: "100%", height: "auto" }}>
       {title && (
         <Box
           component="h2"
           sx={{
             m: 0,
             px: 0,
-            py: '3rem',
-            fontSize: { xs: '2rem', md: '2.5rem', lg: '3rem' },
+            py: "3rem",
+            fontSize: { xs: "2rem", md: "2.5rem", lg: "3rem" },
             color: (theme) => theme.palette.primary.main,
             fontWeight: 700,
           }}
@@ -77,42 +78,44 @@ export function MinimalContactForm({
 
       <Box
         sx={{
-          display: 'grid',
-          gridTemplateColumns: { xs: '100%' },
-          gridAutoFlow: 'row',
+          display: "grid",
+          gridTemplateColumns: { xs: "100%" },
+          gridAutoFlow: "row",
         }}
       >
         <Box
           sx={{
-            display: 'grid',
-            gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
-            gridTemplateRows: { xs: '1fr', md: 'none' },
-            gridAutoFlow: 'row',
-            columnGap: '4rem',
-            rowGap: '5rem',
-            ...(rightAlign ? { gridColumn: '2/3' } : {}),
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+            gridTemplateRows: { xs: "1fr", md: "none" },
+            gridAutoFlow: "row",
+            columnGap: "4rem",
+            rowGap: "5rem",
+            ...(rightAlign ? { gridColumn: "2/3" } : {}),
           }}
         >
           <TextField
-            sx={{ gridColumn: { xs: '1/3', md: 'auto' } }}
+            sx={{ gridColumn: { xs: "1/3", md: "auto" } }}
             variant="outlined"
             {...nameInputProps}
           />
-          <TextField
-            sx={{ gridColumn: { xs: '1/3', md: 'auto' } }}
+          <NumberFormat
+            customInput={TextField}
+            format="(##) #-####-####"
+            sx={{ gridColumn: { xs: "1/3", md: "auto" } }}
             variant="outlined"
             {...phoneInputProps}
           />
 
           <TextField
-            sx={{ gridColumn: '1/3' }}
+            sx={{ gridColumn: "1/3" }}
             variant="outlined"
             {...emailInputProps}
           />
 
           <TextField
             {...messageInputProps}
-            sx={{ gridColumn: '1/3' }}
+            sx={{ gridColumn: "1/3" }}
             variant="outlined"
             multiline
             rows={8}
@@ -120,9 +123,9 @@ export function MinimalContactForm({
 
           <Button
             sx={{
-              maxWidth: 'fit-content',
-              fontSize: '1.5rem',
-              textTransform: 'inherit',
+              maxWidth: "fit-content",
+              fontSize: "1.5rem",
+              textTransform: "inherit",
             }}
             variant="contained"
             color={buttonProps.color}
@@ -139,7 +142,7 @@ export function MinimalContactForm({
 
 export default MinimalContactForm;
 
-const buttonRightAlign: BoxProps['sx'] = {
-  gridColumn: '2',
-  justifySelf: 'flex-end',
+const buttonRightAlign: BoxProps["sx"] = {
+  gridColumn: "2",
+  justifySelf: "flex-end",
 };

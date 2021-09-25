@@ -1,13 +1,14 @@
-import { Box } from '@material-ui/core';
-import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog, { DialogProps } from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { FormInputProps } from '../minimal-contact-form/MinimalContactForm';
+import { Box } from "@material-ui/core";
+import * as React from "react";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Dialog, { DialogProps } from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import { FormInputProps } from "../minimal-contact-form/MinimalContactForm";
+import NumberFormat from "react-number-format";
 
 /* eslint-disable-next-line */
 export interface ContactFormDialogProps {
@@ -27,28 +28,28 @@ export interface ContactFormDialogProps {
 }
 
 export function ContactFormDialog({
-  title = 'Placeholder title',
-  subtitle = 'Lorem ipsum dolum salet, please fill out this fields this is placeholder text to give context about this forms purpose to the end user.',
-  cancelLabel = 'Cancel',
-  submitLabel = 'Send',
+  title = "Placeholder title",
+  subtitle = "Lorem ipsum dolum salet, please fill out this fields this is placeholder text to give context about this forms purpose to the end user.",
+  cancelLabel = "Cancel",
+  submitLabel = "Send",
   onSubmit,
   handleClose,
   open = false,
   emailInputProps = {
-    label: 'Email',
-    placeholder: 'Ex. joao.vitor@gmail.com',
+    label: "Email",
+    placeholder: "Ex. joao.vitor@gmail.com",
   },
   messageInputProps = {
-    label: 'Mensagem',
-    placeholder: 'Ex: Tenho dúvidas a respeito de...',
+    label: "Mensagem",
+    placeholder: "Ex: Tenho dúvidas a respeito de...",
   },
   nameInputProps = {
-    label: 'Nome completo',
-    placeholder: 'Ex. João Vitor',
+    label: "Nome completo",
+    placeholder: "Ex. João Vitor",
   },
   phoneInputProps = {
-    label: 'Número',
-    placeholder: 'Ex: (00) 0-0000-0000',
+    label: "Número",
+    placeholder: "Ex: (00) 0-0000-0000",
   },
   DialogProps,
   isSubmiting,
@@ -56,30 +57,30 @@ export function ContactFormDialog({
   return (
     <Dialog
       sx={{
-        '.MuiDialog-paper': {
-          minWidth: '50%',
+        ".MuiDialog-paper": {
+          minWidth: "50%",
         },
       }}
-      maxWidth={'xl'}
+      maxWidth={"xl"}
       open={open}
       onClose={handleClose}
       {...DialogProps}
     >
       <DialogTitle>{title}</DialogTitle>
       <DialogContent>
-        <DialogContentText sx={{ pb: '2rem' }}>{subtitle}</DialogContentText>
+        <DialogContentText sx={{ pb: "2rem" }}>{subtitle}</DialogContentText>
         <Box
           sx={{
-            display: 'grid',
-            gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
-            gridTemplateRows: '1fr',
-            gridAutoFlow: 'row',
-            gap: '3rem',
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+            gridTemplateRows: "1fr",
+            gridAutoFlow: "row",
+            gap: "3rem",
           }}
         >
           <TextField
             {...nameInputProps}
-            sx={{ gridColumn: { xs: '1/3', md: 'initial' } }}
+            sx={{ gridColumn: { xs: "1/3", md: "initial" } }}
             autoFocus
             margin="dense"
             fullWidth
@@ -87,22 +88,24 @@ export function ContactFormDialog({
           />
           <TextField
             {...emailInputProps}
-            sx={{ gridColumn: { xs: '1/3', md: 'initial' } }}
+            sx={{ gridColumn: { xs: "1/3", md: "initial" } }}
             margin="dense"
             type="email"
             fullWidth
             variant="outlined"
           />
-          <TextField
+          <NumberFormat
+            customInput={TextField}
+            format="(##) #-####-####"
             {...phoneInputProps}
-            sx={{ gridColumn: '1/3' }}
+            sx={{ gridColumn: "1/3" }}
             margin="dense"
             fullWidth
             variant="outlined"
           />
           <TextField
             {...messageInputProps}
-            sx={{ gridColumn: '1/3' }}
+            sx={{ gridColumn: "1/3" }}
             margin="dense"
             fullWidth
             variant="outlined"

@@ -17,6 +17,15 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   return (
     <Box sx={{ width: "100%" }}>
       <Header />
+
+      <Box
+        id="anchor"
+        sx={{
+          visibility: "hidden",
+          opacity: 0,
+          height: { lg: "95px" },
+        }}
+      />
       {children}
       <div id="contact_form">
         <Contact

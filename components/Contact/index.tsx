@@ -66,12 +66,14 @@ const PicComponent = () => {
         },
       }}
     >
-      <Image
-        lazyBoundary="800px"
-        loading="lazy"
+      <Box
+        component="img"
         src="/images/young-doc-female-2.png"
-        layout="fill"
-        objectFit="contain"
+        sx={{
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
+        }}
       />
     </Box>
   );

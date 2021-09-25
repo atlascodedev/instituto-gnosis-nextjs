@@ -5,19 +5,19 @@ import {
   CardActions,
   CardContent,
   Typography,
-} from '@material-ui/core';
-import { SxProps, Theme } from '@material-ui/system';
-import { IconType } from 'react-icons/lib';
-import { CSSInterpolation } from '@material-ui/system';
+} from "@material-ui/core";
+import { SxProps, Theme } from "@material-ui/system";
+import { IconType } from "react-icons/lib";
+import { CSSInterpolation } from "@material-ui/system";
 
 export const backGroundZoom = (
-  variant: 'backgroundImage' | 'objectFit',
+  variant: "backgroundImage" | "objectFit",
   duration = 5
 ): CSSInterpolation => {
   const objectFitVariant = {
-    '& > :first-child': {
+    "& > :first-child": {
       transition: `${duration}s`,
-      ':hover': {
+      ":hover": {
         transform: `scale(1.3)`,
       },
     },
@@ -25,16 +25,16 @@ export const backGroundZoom = (
 
   const backgroundImageVariant = {
     trasition: `${duration}s`,
-    ':hover': {
-      backgroundSize: '130%',
+    ":hover": {
+      backgroundSize: "130%",
     },
   };
 
   const zoomVariant =
-    variant === 'objectFit' ? objectFitVariant : backgroundImageVariant;
+    variant === "objectFit" ? objectFitVariant : backgroundImageVariant;
 
   return {
-    overflow: 'hidden',
+    overflow: "hidden",
     ...zoomVariant,
   };
 };
@@ -49,66 +49,72 @@ export function OfferCard({
 }: OfferCardProps) {
   return (
     <Box
-      sx={{ width: { xs: '30rem', lg: '34rem' }, fontSize: 'inherit', ...sx }}
+      sx={{ width: { xs: "30rem", lg: "34rem" }, fontSize: "inherit", ...sx }}
     >
-      <Card sx={{ maxWidth: '100%', borderRadius: '11px' }}>
-        <Box
-          sx={{
-            width: '100%',
-            height: '19em',
-            // eslint-disable-next-line @typescript-eslint/ban-types
-            ...(zoomEffect ? (backGroundZoom('objectFit') as {}) : {}),
-          }}
-        >
+      <Card sx={{ maxWidth: "100%", borderRadius: "11px" }}>
+        <Box component="a" href={redirectLink}>
           <Box
-            component="img"
             sx={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
+              width: "100%",
+              height: "19em",
+              // eslint-disable-next-line @typescript-eslint/ban-types
+              ...(zoomEffect ? (backGroundZoom("objectFit") as {}) : {}),
             }}
-            src={img}
-          ></Box>
+          >
+            <Box
+              component="img"
+              sx={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+              src={img}
+            ></Box>
+          </Box>{" "}
         </Box>
         <CardContent
           sx={{
-            px: '2.7em',
-            pb: '0em',
-            pt: '0em',
+            px: "2.7em",
+            pb: "0em",
+            pt: "0em",
           }}
         >
-          <Typography
-            sx={{
-              fontSize: '2em',
-              fontWeight: '600',
-              color: (theme) => theme.palette.primary.main,
-              m: '0em',
-              py: '1em',
-            }}
-            gutterBottom
-            variant="h5"
-            component="div"
+          <Box
+            sx={{ textDecoration: "none" }}
+            component="a"
+            href={redirectLink}
           >
-            {title}
-          </Typography>
-
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '1.5em' }}>
+            <Typography
+              sx={{
+                fontSize: "2em",
+                fontWeight: "600",
+                color: (theme) => theme.palette.primary.main,
+                m: "0em",
+                py: "1em",
+              }}
+              gutterBottom
+              variant="h5"
+            >
+              {title}
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "1.5em" }}>
             {items.map(({ icon: Icon, text }, index) => {
               return (
                 <Box
-                  sx={{ display: 'flex', alignItems: 'center', gap: '1.5em' }}
+                  sx={{ display: "flex", alignItems: "center", gap: "1.5em" }}
                   key={index}
                 >
                   <Box
                     sx={{
-                      fontSize: '1.8em',
+                      fontSize: "1.8em",
                       color: (theme) => theme.palette.primary.main,
                     }}
                     component={Icon}
                   />
                   <Typography
                     sx={{
-                      fontSize: '1.6em',
+                      fontSize: "1.6em",
                       color: (theme) => theme.palette.grey[500],
                     }}
                     component="sub"
@@ -120,15 +126,16 @@ export function OfferCard({
             })}
           </Box>
         </CardContent>
-        <CardActions sx={{ px: '2.7em', pt: '2em', pb: '2em' }}>
+        <CardActions sx={{ px: "2.7em", pt: "2em", pb: "2em" }}>
           <Button
+            variant="contained"
             color="primary"
-            LinkComponent={'a'}
+            LinkComponent={"a"}
             href={redirectLink}
             sx={{
-              fontSize: '1.8em',
-              textTransform: 'inherit',
-              fontWeight: '600',
+              fontSize: "1.4em",
+              textTransform: "inherit",
+              fontWeight: "500",
             }}
           >
             Saiba mais

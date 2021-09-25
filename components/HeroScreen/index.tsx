@@ -61,6 +61,7 @@ export function HeroScreenWhiteDots({
         backgroundSize: "10px 10px",
         width: "100%",
         overflow: "hidden",
+        pt: { md: "50px" },
       }}
     >
       <Container maxWidth="lg">
@@ -98,11 +99,15 @@ export function HeroScreenWhiteDots({
               }}
               src={"/images/blob.svg"}
             />
-            <Image
-              width={600}
-              height={600}
+            <Box
+              component="img"
+              sx={{
+                position: "absolute",
+                height: "100%",
+                width: "100%",
+                objectFit: { xs: "cover", sm: "contain" },
+              }}
               src={"/images/young-doc-female.png"}
-              loading="eager"
             />
           </Box>
 
@@ -117,12 +122,16 @@ export function HeroScreenWhiteDots({
               }}
               src={"/images/blob.svg"}
             />
-            <Box sx={{ width: "500px", height: "500px" }}>
-              <Image
-                loading="eager"
+            <Box sx={{ width: "500px", height: "500px", zIndex: 5 }}>
+              <Box
+                component="img"
                 src="/images/hero-doc.png"
-                layout="fill"
-                objectFit="cover"
+                sx={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "100%",
+                  position: "absolute",
+                }}
               />
             </Box>
           </Box>

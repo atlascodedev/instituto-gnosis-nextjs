@@ -9,21 +9,21 @@ const styles = {
     width: "100%",
     display: "flex",
     flexDirection: { xs: "column", lg: "row" },
-    mt: { xs: `${DESKTOP_HEADER_HEIGHT + COMPENSATION_MARGIN}px` },
-    // pb: { xs: `${COMPENSATION_MARGIN}px` },
     gap: { xs: 5, lg: 0 },
+    pt: { xs: "125px", sm: "150px", lg: "0px" },
   } as SxProps<Theme>,
 
   ctaContainer: {
     width: { xs: "100%", lg: "50%" },
     display: "flex",
     alignItems: "center",
+    justifyContent: { sm: "center", md: "initial" },
   } as SxProps<Theme>,
 
   picContainer: {
     width: { xs: "100%", lg: "50%" },
     m: 0,
-    height: "100%",
+    height: { xs: "350px" },
     position: "relative",
     display: { xs: "block", lg: "none" },
   } as SxProps<Theme>,
@@ -40,12 +40,13 @@ const styles = {
 
   ctaInnerContainer: {
     display: "flex",
-    alignItems: "flex-start",
+    alignItems: { xs: "flex-start", sm: "center", md: "flex-start" },
     flexDirection: "column",
     justifyContent: "center",
     gap: 5,
     fontSize: (theme) => theme.typography.h1,
     maxWidth: { xs: "100%", lg: "15ch" },
+    textAlign: { sm: "center", md: "initial" },
   } as SxProps<Theme>,
 
   mainText: {

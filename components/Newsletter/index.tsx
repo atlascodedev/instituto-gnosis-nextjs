@@ -73,12 +73,11 @@ const Newsletter = (props: NewsletterProps) => {
               },
             }}
           >
-            <Image
-              loading="eager"
+            <Box
+              component="img"
               className="newsletter-doc-img"
-              layout="fill"
-              objectFit="contain"
               src="/images/doc-img-2.png"
+              sx={{ objectFit: "contain", width: "100%", height: "100%" }}
             />
           </Box>
         </Box>
@@ -88,6 +87,7 @@ const Newsletter = (props: NewsletterProps) => {
             display: "flex",
             flexDirection: "column",
             alignSelf: { xs: "center", lg: "center" },
+            alignItems: { sm: "center", md: "initial" },
             gap: "2rem",
             order: { xs: 0, lg: 1 },
           }}
