@@ -126,7 +126,7 @@ export function OfferCard({
             })}
           </Box>
         </CardContent>
-        <CardActions sx={{ px: "2.7em", pt: "2em", pb: "2em" }}>
+        <CardActions sx={{ px: "2.7em", pt: "3.5em", pb: "3.5em" }}>
           <Button
             variant="contained"
             color="primary"

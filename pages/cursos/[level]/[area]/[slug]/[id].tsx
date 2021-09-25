@@ -43,7 +43,7 @@ const CoursePage = ({
     <Box
       sx={{
         width: "100%",
-        pt: { xs: "15rem", lg: "5rem" },
+        pt: { xs: "15rem", lg: "7.5rem" },
         bgcolor: "#F6F9FB",
       }}
     >

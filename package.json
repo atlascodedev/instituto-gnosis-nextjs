@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
+    "deploy": "next build && next export && firebase deploy --only=hosting --project=gnosis-webapp" ,
     "start": "next start",
     "serve": "next serve",
-    "lint": "next lint"
+    "lint": "next lint",
+    "firebaseDeploy": "firebase deploy --only=hosting --project=gnosis-webapp"
   },
   "dependencies": {
     "@atlascode/core": "^1.1.6-alpha-2",
