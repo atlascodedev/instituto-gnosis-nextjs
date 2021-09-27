@@ -6,13 +6,15 @@ import AppLayout from "../layout/LandingPage.layout";
 import "@atlascode/core/core.esm.css";
 import Head from "next/head";
 import { CacheProvider, EmotionCache } from "@emotion/react";
-import { ThemeProvider, CssBaseline } from "@material-ui/core";
+import { ThemeProvider, CssBaseline, Box } from "@material-ui/core";
 import createEmotionCache from "@emotion/cache";
 import GlobalContactDialog from "../components/GlobalContactDialog/GlobalContactDialog";
 import CourseDialog from "../components/CourseDialog/CourseDialog";
 import GlobalSnack from "../components/Alerts";
 import "../public/css/index.css";
-import TagManager, { DataLayerArgs, TagManagerArgs } from "react-gtm-module";
+import TagManager, { TagManagerArgs } from "react-gtm-module";
+import WhatsAppButton from "../components/WhatsAppButton";
+import { wppRedirect } from "../utility/redirectToWhatsapp";
 
 const tgmArgs: TagManagerArgs = {
   gtmId: "GTM-KR46SPQ",
@@ -68,6 +70,30 @@ export default function MyApp(
               <Component {...pageProps} />
             </AppLayout>
           </ThemeSmoothScrollLayout>
+
+          <Box sx={{ display: { xs: "block", lg: "none" } }}>
+            <WhatsAppButton
+              onClick={() =>
+                wppRedirect(
+                  "5551991431009",
+                  "Olá, estou vindo através do website e gostaria de mais informações.",
+                  "mobile"
+                )
+              }
+            />
+          </Box>
+
+          <Box sx={{ display: { xs: "none", lg: "block" } }}>
+            <WhatsAppButton
+              onClick={() =>
+                wppRedirect(
+                  "5551991431009",
+                  "Olá, estou vindo através do website e gostaria de mais informações.",
+                  "desktop"
+                )
+              }
+            />
+          </Box>
         </MotionBox>
 
         <GlobalContactDialog />
@@ -77,3 +103,6 @@ export default function MyApp(
     </CacheProvider>
   );
 }
+
+// "5551991431009",
+// "Olá, estou vindo através do website e gostaria de mais informações."
