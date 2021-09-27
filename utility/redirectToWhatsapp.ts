@@ -41,7 +41,7 @@ export function deviceAwareWppURL(
   device: "mobile" | "desktop"
 ) {
   if (device === "mobile") {
-    return `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+    return `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(
       message
     )}`;
   } else {
@@ -58,7 +58,7 @@ export function wppRedirect(
 ) {
   if (device === "mobile") {
     window.open(
-      `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+      `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(
         message
       )}`,
       "_blank"
