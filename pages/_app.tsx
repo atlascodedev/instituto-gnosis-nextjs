@@ -15,6 +15,7 @@ import "../public/css/index.css";
 import TagManager, { TagManagerArgs } from "react-gtm-module";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { wppRedirect } from "../utility/redirectToWhatsapp";
+import * as gtag from "../utility/gtag";
 
 const tgmArgs: TagManagerArgs = {
   gtmId: "GTM-KR46SPQ",
@@ -34,6 +35,16 @@ export default function MyApp(
   React.useEffect(() => {
     TagManager.initialize(tgmArgs);
   }, []);
+
+  React.useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      gtag.pageview(url);
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
     <CacheProvider value={emotionCache}>
