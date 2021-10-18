@@ -1,8 +1,8 @@
-const IS_PROD = process.env.NODE_ENV === 'production';
+const IS_PROD = process.env.NODE_ENV === "production";
 
 const API_ROUTE_BASE = IS_PROD
-  ? 'https://us-central1-gnosis-webapp.cloudfunctions.net/api'
-  : 'http://127.0.0.1:5001/gnosis-webapp/us-central1/api';
+  ? "https://us-central1-gnosis-webapp.cloudfunctions.net/api"
+  : "http://127.0.0.1:5001/gnosis-webapp/us-central1/api";
 
 /**
  * Contact required body - {name: string, email: string, phone: string, message: string}
@@ -11,9 +11,9 @@ const API_ROUTE_BASE = IS_PROD
  */
 export const EMAIL_API_ROUTES = {
   contact:
-    'https://us-central1-atlascodedev-landing.cloudfunctions.net/api/sendMail/gnosis',
+    "https://us-central1-atlascodedev-landing.cloudfunctions.net/api/sendMail/gnosis",
   course:
-    'https://us-central1-atlascodedev-landing.cloudfunctions.net/api/sendMail/gnosis-curso',
+    "https://us-central1-atlascodedev-landing.cloudfunctions.net/api/sendMail/gnosis-curso",
 };
 
 export const FORM_API_ROUTES = {
@@ -30,3 +30,8 @@ export const COLLECTIONS_API_ROUTES = {
   blog: `${API_ROUTE_BASE}/collections/entries/gnosisBlog`,
   testimonials: `${API_ROUTE_BASE}/collections/entries/testimonials`,
 };
+
+export const GTM_ID = {
+  production: "GTM-KR46SPQ",
+  development: "GTM-PKZC7DV",
+} as const;
