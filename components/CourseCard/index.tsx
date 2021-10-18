@@ -9,6 +9,7 @@ import {
 import { SxProps, Theme } from "@material-ui/system";
 import { IconType } from "react-icons/lib";
 import { CSSInterpolation } from "@material-ui/system";
+import { useRouter } from "next/router";
 
 export const backGroundZoom = (
   variant: "backgroundImage" | "objectFit",
@@ -47,6 +48,8 @@ export function OfferCard({
   zoomEffect,
   sx,
 }: OfferCardProps) {
+  const router = useRouter();
+
   return (
     <Box
       sx={{ width: { xs: "30rem", lg: "34rem" }, fontSize: "inherit", ...sx }}
@@ -131,7 +134,7 @@ export function OfferCard({
             variant="contained"
             color="primary"
             LinkComponent={"a"}
-            href={redirectLink}
+            onClick={() => router.push(redirectLink)}
             sx={{
               fontSize: "1.4em",
               textTransform: "inherit",

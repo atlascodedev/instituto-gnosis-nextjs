@@ -1,16 +1,9 @@
-import { ContactFormDialog, StandardFooter } from "@atlascode/core";
 import { Box } from "@material-ui/core";
 import _ from "lodash";
 import React from "react";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import WhatsAppButton from "../components/WhatsAppButton";
-import isMobile from "../utility/isMobile";
-import {
-  redirectToWhatsapp,
-  deviceAwareWhatsappURL,
-} from "../utility/redirectToWhatsapp";
 
 export interface AppLayoutProps {
   children?: React.ReactNode;
