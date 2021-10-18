@@ -1,4 +1,4 @@
-interface IWindow extends Window {
+export interface IWindow extends Window {
   dataLayer: Record<string, any>[];
 }
 
@@ -13,23 +13,19 @@ export interface IGTMDataLayerEventDispatcher {
   custom: (customEvent: { [Key: string]: any }) => void;
 }
 
-abstract class GTMDataLayer implements IGTMDataLayer {
-  DataLayer =
-    typeof window !== "undefined" && window.dataLayer ? window.dataLayer : [];
-}
-
 export class GTMDataLayerEventDispatcher
-  extends GTMDataLayer
   implements IGTMDataLayerEventDispatcher
 {
   public pageview(url: string) {
-    this.DataLayer.push({
+    window.dataLayer.push({
       event: "pageview",
       page: url,
     });
+
+    console.log("pushed pageview");
   }
 
   public custom(customEvent: { [Key: string]: any }) {
-    this.DataLayer.push(customEvent);
+    window.dataLayer.push(customEvent);
   }
 }

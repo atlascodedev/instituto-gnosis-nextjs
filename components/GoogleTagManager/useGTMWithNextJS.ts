@@ -1,16 +1,35 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { GTMDataLayerEventDispatcher } from "./GTMDataLayer";
+import {
+  GTMDataLayerEventDispatcher,
+  IGTMDataLayerEventDispatcher,
+  IWindow,
+} from "./GTMDataLayer";
 
 export function useGTMWithNextJSRouter() {
   const router = useRouter();
-
-  const dataLayer = new GTMDataLayerEventDispatcher();
+  const [dataLayer, setDataLayer] =
+    React.useState<IGTMDataLayerEventDispatcher>();
 
   React.useEffect(() => {
-    router.events.on("routeChangeComplete", dataLayer.pageview);
+    if (
+      (typeof window !== "undefined" &&
+        (window as unknown as IWindow).dataLayer) ||
+      !dataLayer
+    ) {
+      setDataLayer(new GTMDataLayerEventDispatcher());
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (dataLayer) {
+      router.events.on("routeChangeComplete", dataLayer.pageview);
+    }
+
     return () => {
-      router.events.off("routeChangeComplete", dataLayer.pageview);
+      if (dataLayer) {
+        router.events.off("routeChangeComplete", dataLayer.pageview);
+      }
     };
-  }, [router.events]);
+  }, [router.events, dataLayer]);
 }
