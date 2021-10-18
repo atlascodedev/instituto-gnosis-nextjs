@@ -13,9 +13,8 @@ import GlobalSnack from "../components/Alerts";
 import "../public/css/index.css";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { wppRedirect } from "../utility/redirectToWhatsapp";
-import Script from "next/script";
 import { Box, ThemeProvider, CssBaseline } from "@material-ui/core";
-import GoogleTagManager from "../components/GoogleTagManager";
+import { GoogleTagManagerAfterInteractive } from "../components/GoogleTagManager";
 
 const GTM_ID = "GTM-KR46SPQ";
 
@@ -32,7 +31,7 @@ export default function MyApp(
 
   return (
     <React.Fragment>
-      <GoogleTagManager GTM_ID={GTM_ID} />
+      <GoogleTagManagerAfterInteractive GTM_ID={GTM_ID} />
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
           <MotionBox
