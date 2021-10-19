@@ -2,8 +2,8 @@ import Document, { Head, Html, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
 import createCache from "@emotion/cache";
 import React from "react";
-import { GoogleTagManagerBeforeInteractive } from "../components/GoogleTagManager";
 import { GTM_ID } from "../constants";
+import { GTMBeforeInteractive } from "../components/GoogleTagManager/GTMBeforeInteractive";
 
 class CustomDocument extends Document {
   static async getInitialProps(ctx: any) {
@@ -35,7 +35,7 @@ class CustomDocument extends Document {
           <link rel="manifest" href="/favicon/site.webmanifest" />
         </Head>
         <body>
-          <GoogleTagManagerBeforeInteractive GTM_ID={GTM_ID.development} />
+          <GTMBeforeInteractive GTM_ID={GTM_ID.production} />
           <Main />
           <NextScript />
         </body>

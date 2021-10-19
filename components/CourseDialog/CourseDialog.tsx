@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { submitCourseFormDialog } from "./helpers";
 import { alertStore } from "../Alerts/store";
 import useContactForm from "../../hooks/useContactForm";
+import { GTMDataLayerEvent } from "../GoogleTagManager/lib";
 
 interface Props {}
 
@@ -39,6 +40,18 @@ const CourseDialog = (props: Props) => {
       snackDispatch({
         message: "Enviado com sucesso!",
         severity: "success",
+      });
+
+      GTMDataLayerEvent({
+        event: "manifestacao-interesse",
+        curso: `${courseDialogInfo.name}`,
+        area: `${courseDialogInfo.area}`,
+        level: `${courseDialogInfo.level}`,
+        nome: values.name,
+        email: values.email,
+        telefone: values.phone,
+        mensagem: values.message,
+        timestamp: `${new Date(Date.now()).toLocaleString("pt-br")}`,
       });
 
       router.push("/contato-efetuado");

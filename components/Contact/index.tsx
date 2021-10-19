@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import submitContactDialog from "../GlobalContactDialog/helpers";
 import { alertStore } from "../Alerts/store";
 import useContactForm from "../../hooks/useContactForm";
-import Image from "next/image";
+import { GTMDataLayerEvent } from "../GoogleTagManager/lib";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ContactProps extends MinimalFormPicOverBlobProps {}
@@ -118,6 +118,16 @@ export function MinimalFormPicOverBlob({
           severity: "success",
         });
         actions.resetForm();
+
+        GTMDataLayerEvent({
+          event: "contato",
+          nome: name,
+          email: email,
+          telefone: phone,
+          mensagem: message,
+          timestamp: `${new Date(Date.now()).toLocaleString("pt-br")}`,
+        });
+
         router.push("/contato-efetuado");
       } catch (error) {
         dispatchAlert({

@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { contactDialogStore } from "./store";
 import submitContactDialog from "./helpers";
 import useContactForm from "../../hooks/useContactForm";
+import { GTMDataLayerEvent } from "../GoogleTagManager/lib";
 
 interface Props {}
 
@@ -20,6 +21,14 @@ const GlobalContactDialog = (props: Props) => {
       try {
         const response = await submitContactDialog(name, email, message, phone);
         contactClose();
+
+        GTMDataLayerEvent({
+          event: "contato",
+          nome: name,
+          email: email,
+          telefone: phone,
+          mensagem: message,
+        });
 
         router.push("/contato-efetuado");
       } catch (error) {

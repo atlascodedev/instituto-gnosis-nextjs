@@ -13,7 +13,7 @@ const ContactConfirmationPage = (props: ContactConfirmationPageProps) => {
     <Box sx={{ py: { xs: "8rem", lg: "15rem" } }}>
       <ContactThankyouPage
         ButtonProps={{ onClick: () => router.push("/") }}
-        redirectTimeout={30000}
+        redirectTimeout={Infinity}
         redirectCallback={() => router.push("/")}
       />
     </Box>

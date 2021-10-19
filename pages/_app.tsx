@@ -14,8 +14,9 @@ import "../public/css/index.css";
 import WhatsAppButton from "../components/WhatsAppButton";
 import { wppRedirect } from "../utility/redirectToWhatsapp";
 import { Box, ThemeProvider, CssBaseline } from "@material-ui/core";
-import { GoogleTagManagerAfterInteractive } from "../components/GoogleTagManager";
 import { GTM_ID } from "../constants";
+import { GTMAfterInteractive } from "../components/GoogleTagManager/GTMAfterInteractive";
+import { useGTMWithNextJSRouter } from "../components/GoogleTagManager/useGTMPageView";
 
 export default function MyApp(
   props: AppProps & { emotionCache?: EmotionCache }
@@ -28,9 +29,11 @@ export default function MyApp(
     router,
   } = props;
 
+  useGTMWithNextJSRouter();
+
   return (
     <React.Fragment>
-      <GoogleTagManagerAfterInteractive GTM_ID={GTM_ID.development} />
+      <GTMAfterInteractive GTM_ID={GTM_ID.production} />
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
           <MotionBox

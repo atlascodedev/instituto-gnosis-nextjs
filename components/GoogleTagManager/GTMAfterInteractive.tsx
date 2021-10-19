@@ -1,13 +1,10 @@
-import React from "react";
 import Script, { ScriptProps } from "next/script";
-
-// GTM-PKZC7DV
 
 export interface GTMScriptInjectProps extends ScriptProps {
   GTM_ID: string;
 }
 
-const GTMScriptInject = ({
+export const GTMAfterInteractive = ({
   GTM_ID = "",
   strategy = "afterInteractive",
   dangerouslySetInnerHTML = {
@@ -23,8 +20,6 @@ const GTMScriptInject = ({
     />
   );
 };
-
-export default GTMScriptInject;
 
 const GTM_INIT_HEAD_SCRIPT = (gtm_id: string) => `
 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
