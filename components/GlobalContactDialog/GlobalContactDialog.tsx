@@ -10,7 +10,6 @@ interface Props {}
 
 const GlobalContactDialog = (props: Props) => {
   const router = useRouter();
-
   const contactOpen = contactDialogStore((state) => state.open);
   const contactClose = contactDialogStore((state) => state.closeDialog);
 
@@ -19,8 +18,6 @@ const GlobalContactDialog = (props: Props) => {
       actions.setSubmitting(true);
 
       try {
-        const response = await submitContactDialog(name, email, message, phone);
-        contactClose();
 
         GTMDataLayerEvent({
           event: "contato",
@@ -29,6 +26,11 @@ const GlobalContactDialog = (props: Props) => {
           telefone: phone,
           mensagem: message,
         });
+
+        contactClose();
+
+        await submitContactDialog(name, email, message, phone);
+
 
         router.push("/contato-efetuado");
       } catch (error) {
