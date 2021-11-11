@@ -27,6 +27,20 @@ const CourseDialog = (props: Props) => {
         severity: "info",
       });
 
+
+      GTMDataLayerEvent({
+        event: "manifestacao-interesse",
+        curso: `${courseDialogInfo.name}`,
+        area: `${courseDialogInfo.area}`,
+        level: `${courseDialogInfo.level}`,
+        nome: values.name,
+        email: values.email,
+        telefone: values.phone,
+        mensagem: values.message,
+        timestamp: `${new Date(Date.now()).toLocaleString("pt-br")}`,
+      });
+
+
       await submitCourseFormDialog(
         values.name,
         values.email,
@@ -42,17 +56,7 @@ const CourseDialog = (props: Props) => {
         severity: "success",
       });
 
-      GTMDataLayerEvent({
-        event: "manifestacao-interesse",
-        curso: `${courseDialogInfo.name}`,
-        area: `${courseDialogInfo.area}`,
-        level: `${courseDialogInfo.level}`,
-        nome: values.name,
-        email: values.email,
-        telefone: values.phone,
-        mensagem: values.message,
-        timestamp: `${new Date(Date.now()).toLocaleString("pt-br")}`,
-      });
+     
 
       router.push("/contato-efetuado");
     } catch (error) {

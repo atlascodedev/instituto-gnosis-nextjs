@@ -26,6 +26,9 @@ const CoursePageClassesList = ({ items = [] }: CoursePageClassesListProps) => {
         '.scrollbar-track .scrollbar-thumb': {
           background: (theme) => theme.palette.secondary.main,
         },
+        '.scroll-content': {
+          width: '100%'
+        }
       }}
     >
       <Box
