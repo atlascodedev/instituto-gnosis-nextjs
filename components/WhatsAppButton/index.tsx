@@ -31,6 +31,7 @@ export const WhatsAppButton = ({
         transition={{ type: "keyframes" }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
+       {...rest as unknown as any}
       >
         <MotionBox sx={styles.container} layout transition={{ type: "just" }}>
           <AnimatePresence>
@@ -67,7 +68,7 @@ const stylesClass = (color: "primary" | "secondary" = "primary") =>
       left: (theme) => theme.spacing(0),
       width: "auto",
       color: (theme) => theme.palette[color].contrastText,
-      bgcolor: (theme) => theme.palette[color].main,
+      bgcolor: (theme) => '#009f2b',
       borderRadius: "0px 10px 10px 0px",
       cursor: "pointer",
       fontSize: { xs: "10px", lg: "10px" },

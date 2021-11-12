@@ -71,6 +71,7 @@ export default function MyApp(
 
             <Box sx={{ display: { xs: "block", lg: "none" } }}>
               <WhatsAppButton
+              id='wpp-button'
                 onClick={() =>
                   wppRedirect(
                     "5551991431009",
@@ -83,6 +84,7 @@ export default function MyApp(
 
             <Box sx={{ display: { xs: "none", lg: "block" } }}>
               <WhatsAppButton
+              id='wpp-button'
                 onClick={() =>
                   wppRedirect(
                     "5551991431009",
