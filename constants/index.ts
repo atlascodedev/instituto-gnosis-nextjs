@@ -32,6 +32,6 @@ export const COLLECTIONS_API_ROUTES = {
 };
 
 export const GTM_ID = {
-  production: "GTM-NV4Z5WH",
-  development: "GTM-PKZC7DV",
+  production: process.env.GTM,
+  development: process.env.GTM,
 } as const;

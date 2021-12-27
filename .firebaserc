@@ -5,6 +5,9 @@
       "hosting": {
         "micro": [
           "gnosis-webapp"
+        ],
+        "dev": [
+          "gnosis-dev"
         ]
       }
     }

@@ -21,6 +21,4 @@ export function GTMDataLayerPageView(url: string) {
     event: "pageview",
     page: url,
   });
-
-  console.log(window.dataLayer);
 }
