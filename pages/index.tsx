@@ -1,4 +1,3 @@
-import { useScrollbarContext } from "@atlascode/core";
 import axios, { AxiosResponse } from "axios";
 import { GetStaticProps } from "next";
 import Courses from "../components/Courses";
@@ -17,7 +16,6 @@ import React from "react";
 import Head from "next/head";
 import { FaGraduationCap, FaSchool } from "react-icons/fa";
 import convertToSlug from "../utility/converToSlug";
-import { getCalendarPickerSkeletonUtilityClass } from "@material-ui/lab";
 
 export interface IndexPageProps {
   courses: CourseCollectionType[];
@@ -79,14 +77,11 @@ export function Index({
       setIfVisited(
         () => {
           setIsInitialVisit(false);
-          enableScroll();
         },
         () => setIsInitialVisit(true)
       );
     }
   }, []);
-
-  const { disableScroll, enableScroll, scrollIntoView } = useScrollbarContext();
 
   const courseMultiWithSlug = React.useMemo(
     () => createCourseCollectionWithSlug(coursesSeparated.coursesMulti),
@@ -122,15 +117,16 @@ export function Index({
 
       {isInitialVisit && (
         <GnosisLoader
-          onAnimationStart={disableScroll}
-          onAnimationEnd={enableScroll}
+          onAnimationStart={() => {}}
+          onAnimationEnd={() => {}}
           animate={isInitialVisit}
         />
       )}
 
       <HeroScreen
         ctaLabel="Ver cursos"
-        ctaCallback={() => scrollIntoView("#courses_section")}
+        ctaCallback={() => {}}
+        // scrollIntoView("#courses_section")
       />
       <ProductDefense />
       <div id="courses_section">

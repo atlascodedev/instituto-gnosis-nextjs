@@ -1,12 +1,7 @@
 import { Box, useTheme } from "@material-ui/core";
 import _ from "lodash";
 import { useRouter } from "next/dist/client/router";
-import {
-  isBrowser,
-  KotaMenu,
-  ModernCleanMenu,
-  useScrollbarContext,
-} from "@atlascode/core";
+import { KotaMenu, ModernCleanMenu } from "@atlascode/core";
 import React from "react";
 import { contactDialogStore } from "../GlobalContactDialog/store";
 
@@ -14,7 +9,6 @@ import { contactDialogStore } from "../GlobalContactDialog/store";
 export interface HeaderProps {}
 
 const Header = (props: HeaderProps) => {
-  const { scrollIntoView, scrollTop } = useScrollbarContext();
   const { asPath, push } = useRouter();
 
   const handleScrollIntoView = (callback: (...args: unknown[]) => void) => {
@@ -29,21 +23,21 @@ const Header = (props: HeaderProps) => {
     if (asPath !== "/") {
       push("/");
     } else {
-      scrollTop(1500);
+      // scrollTop(1500);
     }
   };
   const items = [
     {
       action: () =>
         handleScrollIntoView(() => {
-          scrollIntoView("#courses_section");
+          // scrollIntoView("#courses_section");
           setMenuState(false);
         }),
       label: "Cursos",
     },
     {
       action: () => {
-        handleScrollIntoView(() => scrollIntoView("#contact_form"));
+        // handleScrollIntoView(() => scrollIntoView("#contact_form"));
         setMenuState(false);
       },
       label: "Contato",
@@ -53,20 +47,6 @@ const Header = (props: HeaderProps) => {
   const theme = useTheme();
   const mobileHeaderRef = React.useRef<HTMLElement>(null);
   const desktopHeaderRef = React.useRef<HTMLElement>(null);
-
-  const { scrollbarInstance, disableScroll, enableScroll } =
-    useScrollbarContext();
-
-  React.useEffect(() => {
-    if (isBrowser) {
-      scrollbarInstance?.addListener((status) => {
-        const offset = status.offset;
-
-        (mobileHeaderRef as any).current.style.top = offset.y + "px";
-        (desktopHeaderRef as any).current.style.top = offset.y + "px";
-      });
-    }
-  }, [scrollbarInstance]);
 
   const contactStore = contactDialogStore((state) => state.openDialog);
 
@@ -82,8 +62,8 @@ const Header = (props: HeaderProps) => {
         }}
       >
         <KotaMenu
-          onOpen={disableScroll}
-          onClose={enableScroll}
+          onOpen={() => {}}
+          onClose={() => {}}
           {...{
             open: menuState,
             ImageCrossFadeProps: {

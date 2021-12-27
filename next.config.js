@@ -10,4 +10,5 @@ module.exports = {
   env: {
     GTM: getEnvironmentGTM(),
   },
+  swcMinify: true,
 };

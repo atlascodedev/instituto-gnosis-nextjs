@@ -32,6 +32,6 @@ export const COLLECTIONS_API_ROUTES = {
 };
 
 export const GTM_ID = {
-  production: process.env?.GTM ?? "not found",
-  development: process.env?.GTM ?? "not found",
+  production: `${process.env.GTM}`,
+  development: `${process.env.GTM}`,
 } as const;

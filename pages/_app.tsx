@@ -55,23 +55,20 @@ export default function MyApp(
             sx={{ width: "100%", height: "100%" }}
             key={router.route}
           >
-            <ThemeSmoothScrollLayout>
-              <AppLayout>
-                <CssBaseline />
-                <Head>
-                  <title>
-                    Instituto Educacional Gnosis - Cursos de pós-graduação na
-                    área de medicina.
-                  </title>
-                </Head>
+            <AppLayout>
+              <CssBaseline />
+              <Head>
+                <title>
+                  Instituto Educacional Gnosis - Cursos de pós-graduação na área
+                  de medicina.
+                </title>
+              </Head>
 
-                <Component {...pageProps} />
-              </AppLayout>
-            </ThemeSmoothScrollLayout>
+              <Component {...pageProps} />
+            </AppLayout>
 
-            <Box sx={{ display: { xs: "block", lg: "none" } }}>
+            <Box id="wpp-button" sx={{ display: { xs: "block", lg: "none" } }}>
               <WhatsAppButton
-                id='wpp-button'
                 onClick={() =>
                   wppRedirect(
                     "5551991431009",
@@ -82,9 +79,8 @@ export default function MyApp(
               />
             </Box>
 
-            <Box sx={{ display: { xs: "none", lg: "block" } }}>
+            <Box id="wpp-button" sx={{ display: { xs: "none", lg: "block" } }}>
               <WhatsAppButton
-                id='wpp-button'
                 onClick={() =>
                   wppRedirect(
                     "5551991431009",
