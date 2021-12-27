@@ -67,29 +67,29 @@ export default function MyApp(
               <Component {...pageProps} />
             </AppLayout>
 
-            <Box id="wpp-button" sx={{ display: { xs: "block", lg: "none" } }}>
-              <WhatsAppButton
-                onClick={() =>
-                  wppRedirect(
-                    "5551991431009",
-                    "Olá, estou vindo através do website e gostaria de mais informações.",
-                    "mobile"
-                  )
-                }
-              />
-            </Box>
+            <WhatsAppButton
+              id="wpp-button"
+              sx={{ display: { xs: "block", lg: "none" } }}
+              onClick={() =>
+                wppRedirect(
+                  "5551991431009",
+                  "Olá, estou vindo através do website e gostaria de mais informações.",
+                  "mobile"
+                )
+              }
+            />
 
-            <Box id="wpp-button" sx={{ display: { xs: "none", lg: "block" } }}>
-              <WhatsAppButton
-                onClick={() =>
-                  wppRedirect(
-                    "5551991431009",
-                    "Olá, estou vindo através do website e gostaria de mais informações.",
-                    "desktop"
-                  )
-                }
-              />
-            </Box>
+            <WhatsAppButton
+              sx={{ display: { xs: "none", lg: "block" } }}
+              id="wpp-button"
+              onClick={() =>
+                wppRedirect(
+                  "5551991431009",
+                  "Olá, estou vindo através do website e gostaria de mais informações.",
+                  "desktop"
+                )
+              }
+            />
           </MotionBox>
 
           <GlobalContactDialog />
