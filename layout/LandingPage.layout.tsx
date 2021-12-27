@@ -1,5 +1,4 @@
 import { Box } from "@material-ui/core";
-import _ from "lodash";
 import React from "react";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
@@ -10,9 +9,6 @@ export interface AppLayoutProps {
 }
 
 const AppLayout = ({ children }: AppLayoutProps) => {
-  const [contactFormDialogState, setContactFormDialogState] =
-    React.useState<boolean>(false);
-
   return (
     <Box sx={{ width: "100%" }}>
       <Header />

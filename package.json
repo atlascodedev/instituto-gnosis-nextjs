@@ -46,6 +46,7 @@
     "react-number-format": "^4.7.3",
     "react-use": "^17.2.4",
     "regenerator-runtime": "0.13.7",
+    "smooth-scrollbar": "^8.7.2",
     "swiper": "^6.8.2",
     "tslib": "^2.0.0",
     "yup": "^0.32.9",
@@ -53,6 +54,7 @@
   },
   "devDependencies": {
     "@types/react-gtm-module": "^2.0.1",
+    "csstype": "^3.0.10",
     "eslint-config-next": "11.1.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",

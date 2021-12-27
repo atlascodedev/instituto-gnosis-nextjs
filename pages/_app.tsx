@@ -1,6 +1,5 @@
 import * as React from "react";
 import { AppProps } from "next/app";
-import { ThemeSmoothScrollLayout, MotionBox } from "@atlascode/core";
 import theme from "../theme/customTheme";
 import AppLayout from "../layout/LandingPage.layout";
 import "@atlascode/core/core.esm.css";
@@ -17,6 +16,7 @@ import { Box, ThemeProvider, CssBaseline } from "@material-ui/core";
 import { GTM_ID } from "../constants";
 import { GTMAfterInteractive } from "../components/GoogleTagManager/GTMAfterInteractive";
 import { useGTMWithNextJSRouter } from "../components/GoogleTagManager/useGTMPageView";
+import MotionBox from "../components/MotionBox";
 
 export default function MyApp(
   props: AppProps & { emotionCache?: EmotionCache }

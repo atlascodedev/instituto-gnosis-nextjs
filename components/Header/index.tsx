@@ -1,46 +1,42 @@
 import { Box, useTheme } from "@material-ui/core";
-import _ from "lodash";
-import { useRouter } from "next/dist/client/router";
-import { KotaMenu, ModernCleanMenu } from "@atlascode/core";
+import { useRouter } from "next/router";
+import { ModernCleanMenu } from "@atlascode/core";
 import React from "react";
 import { contactDialogStore } from "../GlobalContactDialog/store";
+import { handleMenuClick } from "../../utility/handleMenuClick";
+import scrollToElem, { smoothScrollTo } from "../../utility/scrollToElem";
+import { KotaMenuItem, KotaMenu } from "../KotaMenu/KotaMenu";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface HeaderProps {}
 
 const Header = (props: HeaderProps) => {
-  const { asPath, push } = useRouter();
+  const router = useRouter();
 
-  const handleScrollIntoView = (callback: (...args: unknown[]) => void) => {
-    if (asPath !== "/") {
-      push("/");
+  const handleLogoClick = async () => {
+    if (router.asPath === "/") {
+      smoothScrollTo(0, 250);
     } else {
-      callback();
+      await router.push("/");
+      // scrollToElem("#top");
+      console.log("clicked");
     }
   };
 
-  const handleLogoClick = () => {
-    if (asPath !== "/") {
-      push("/");
-    } else {
-      // scrollTop(1500);
-    }
-  };
-  const items = [
+  const items: KotaMenuItem[] = [
     {
-      action: () =>
-        handleScrollIntoView(() => {
-          // scrollIntoView("#courses_section");
-          setMenuState(false);
-        }),
       label: "Cursos",
-    },
-    {
       action: () => {
-        // handleScrollIntoView(() => scrollIntoView("#contact_form"));
+        handleMenuClick(router, "#courses_section");
         setMenuState(false);
       },
+    },
+    {
       label: "Contato",
+      action: () => {
+        handleMenuClick(router, "#contact_form");
+        setMenuState(false);
+      },
     },
   ];
   const [menuState, setMenuState] = React.useState<boolean>(false);
@@ -62,8 +58,9 @@ const Header = (props: HeaderProps) => {
         }}
       >
         <KotaMenu
-          onOpen={() => {}}
-          onClose={() => {}}
+          onLogoClick={async () => await handleLogoClick()}
+          onOpen={() => setMenuState(true)}
+          onClose={() => setMenuState(false)}
           {...{
             open: menuState,
             ImageCrossFadeProps: {
@@ -94,7 +91,7 @@ const Header = (props: HeaderProps) => {
         }}
       >
         <ModernCleanMenu
-          onLogoClick={handleLogoClick}
+          onLogoClick={async () => await handleLogoClick()}
           ButtonProps={{
             children: "Contate-nos",
             variant: "outlined",

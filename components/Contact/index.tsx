@@ -5,7 +5,6 @@ import {
 } from "@atlascode/core";
 import { Box, useTheme, useMediaQuery, Container } from "@material-ui/core";
 import React from "react";
-import { contactDialogStore } from "../GlobalContactDialog/store";
 import MinimalContactForm from "../minimal-contact-form/MinimalContactForm";
 import { useRouter } from "next/router";
 import submitContactDialog from "../GlobalContactDialog/helpers";

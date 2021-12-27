@@ -16,6 +16,7 @@ import React from "react";
 import Head from "next/head";
 import { FaGraduationCap, FaSchool } from "react-icons/fa";
 import convertToSlug from "../utility/converToSlug";
+import scrollToElem from "../utility/scrollToElem";
 
 export interface IndexPageProps {
   courses: CourseCollectionType[];
@@ -125,8 +126,7 @@ export function Index({
 
       <HeroScreen
         ctaLabel="Ver cursos"
-        ctaCallback={() => {}}
-        // scrollIntoView("#courses_section")
+        ctaCallback={() => scrollToElem("#courses_section")}
       />
       <ProductDefense />
       <div id="courses_section">
