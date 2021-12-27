@@ -46,7 +46,6 @@
     "react-number-format": "^4.7.3",
     "react-use": "^17.2.4",
     "regenerator-runtime": "0.13.7",
-    "smooth-scrollbar": "^8.6.3",
     "swiper": "^6.8.2",
     "tslib": "^2.0.0",
     "yup": "^0.32.9",
