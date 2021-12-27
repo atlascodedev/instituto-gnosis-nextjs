@@ -4,6 +4,7 @@ import { SvgIcon, BoxProps } from "@material-ui/core";
 import { WhatsApp } from "@material-ui/icons";
 import React from "react";
 import MotionBox from "../MotionBox";
+import { noop } from "../../utility/noop";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface WhatsAppButtonProps extends BoxProps {
@@ -24,14 +25,19 @@ export const WhatsAppButton = ({
   return (
     <AnimateSharedLayout>
       <MotionBox
-        onClick={onClick}
+        onClick={(event) => {
+          event.stopPropagation();
+          event.preventDefault();
+
+          onClick ? onClick(event) : noop();
+        }}
         sx={{ ...styles.root, ...sx }}
         style={style}
         layout
         transition={{ type: "keyframes" }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-       {...rest as unknown as any}
+        {...(rest as unknown as any)}
       >
         <MotionBox sx={styles.container} layout transition={{ type: "just" }}>
           <AnimatePresence>
@@ -68,7 +74,7 @@ const stylesClass = (color: "primary" | "secondary" = "primary") =>
       left: (theme) => theme.spacing(0),
       width: "auto",
       color: (theme) => theme.palette[color].contrastText,
-      bgcolor: (theme) => '#009f2b',
+      bgcolor: (theme) => "#009f2b",
       borderRadius: "0px 10px 10px 0px",
       cursor: "pointer",
       fontSize: { xs: "10px", lg: "10px" },
@@ -78,6 +84,7 @@ const stylesClass = (color: "primary" | "secondary" = "primary") =>
       display: "flex",
       height: "100%",
       padding: "10px 0px",
+      pointerEvents: "none",
     },
 
     title: {
