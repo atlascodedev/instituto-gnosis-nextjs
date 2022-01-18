@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "set NODE_OPTIONS=--max_old_space_size=4096 && export GTM_ENV=dev && next dev",
     "build:dev": "export GTM_ENV=dev && next build && next export",
     "build": "export GTM_ENV=prod && next build && next export",
