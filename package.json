@@ -7,12 +7,12 @@
     "dev": "set NODE_OPTIONS=--max_old_space_size=4096 && export GTM_ENV=dev && next dev",
     "build:dev": "export GTM_ENV=dev && next build && next export",
     "build": "export GTM_ENV=prod && next build && next export",
-    "deploy": "next build && next export && firebase deploy --only=hosting --project=gnosis-webapp",
+    "deploy": "export GTM_ENV=prod && next build && next export && firebase deploy --only=hosting:micro --project=gnosis-webapp",
     "deploy:dev": "export GTM_ENV=dev && next build && next export && firebase deploy --only=hosting:dev --project=gnosis-webapp",
     "start": "next start",
     "serve": "next serve",
     "lint": "next lint",
-    "firebaseDeploy": "firebase deploy --only=hosting --project=gnosis-webapp"
+    "firebaseDeploy": "firebase deploy --only=hosting:micro --project=gnosis-webapp"
   },
   "dependencies": {
     "@atlascode/core": "^1.1.6-alpha-2",
